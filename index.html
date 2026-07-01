@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bài kiểm tra MGRL Series</title>
+  <title>Bài kiểm tra MGRL Series </title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -502,10 +502,10 @@
         explain: "Dòng ngắn mạch DC tối đa cho nhóm 3 MPPT là 75 A, mỗi nhánh 25 A."
       },
       {
-        q: "Dải điện áp pin của các model MGRL là dải nào?",
+        q: "Dải điện áp Pin của các model MGRL là dải nào?",
         options: ["40 V - 60 V", "36 V - 60 V", "48 V - 72 V", "50 V - 80 V"],
         answer: 0,
-        explain: "Dải điện áp pin trong tài liệu là 40 V - 60 V."
+        explain: "Dải điện áp Pin trong tài liệu là 40 V - 60 V."
       },
       {
         q: "Dòng sạc/xả tối đa của MG10RL là bao nhiêu?",
@@ -544,7 +544,7 @@
         explain: "Dải tần số lưới là 45 Hz - 55 Hz / 55 Hz - 65 Hz."
       },
       {
-        q: "Giá trị THD hài hòa ở công suất định mức của phần AC được nêu là bao nhiêu?",
+        q: "Giá trị THD ở công suất định mức của phần AC được nêu là bao nhiêu?",
         options: ["< 3%", "< 2%", "< 4%", "< 5%"],
         answer: 0,
         explain: "Độ méo hài tổng (THD) được ghi là < 3% tại công suất định mức."
@@ -581,7 +581,7 @@
       },
       {
         q: "Cổng đa chức năng có trạng thái mặc định nào khi không cấu hình thiết bị?",
-        options: ["Không kết nối", "Kết nối máy phát diesel", "Kết nối tải phân cấp", "Cải tạo cổng hòa lưới"],
+        options: ["Không kết nối", "Kết nối máy phát diesel", "Kết nối tải phân cấp", "Kết nối Inverter hòa lưới"],
         answer: 0,
         explain: "Phần chế độ cổng đa chức năng có tùy chọn 1 là không kết nối, áp dụng khi không có thiết bị nào nối vào cổng này."
       },
@@ -611,7 +611,7 @@
       },
       {
         q: "Trong hệ một máy độc lập lưới, phía PV được yêu cầu như thế nào?",
-        options: ["Bắt buộc kết nối tấm PV", "Có thể bỏ qua tấm PV", "Phía PV phải để hở hoàn toàn", "PV chỉ được kết nối qua công tơ"],
+        options: ["Bắt buộc kết nối tấm PV", "Có thể bỏ qua tấm PV", "Phía PV phải để hở hoàn toàn", "PV chỉ được kết nối khi có Pin"],
         answer: 0,
         explain: "Slide hệ một máy độc lập lưới ghi phía PV bắt buộc phải kết nối tấm PV."
       },
@@ -634,13 +634,13 @@
         explain: "Các slide MBL160 ghi có thể kết nối song song tối đa 20 bộ."
       },
       {
-        q: "Với 4*MG5/6RL + MBL160 hoặc pin lithium bên thứ ba, máy cắt DC được nêu tối thiểu bao nhiêu?",
+        q: "Với 4*MG5/6RL + MBL160 hoặc pin lithium bên thứ ba, CB DC được nêu tối thiểu bao nhiêu?",
         options: [">=150 A / 100 V", ">=100 A / 100 V", ">=200 A / 100 V", ">=250 A / 100 V"],
         answer: 0,
         explain: "Slide 4*MG5/6RL ghi yêu cầu >=150 A/100 V."
       },
       {
-        q: "Với 4*MG8/10/12RL + MBL160 hoặc pin lithium bên thứ ba, máy cắt DC được nêu tối thiểu bao nhiêu?",
+        q: "Với 4*MG8/10/12RL + MBL160 hoặc pin lithium bên thứ ba, CB DC được nêu tối thiểu bao nhiêu?",
         options: [">=250 A / 100 V", ">=150 A / 100 V", ">=200 A / 100 V", ">=300 A / 100 V"],
         answer: 0,
         explain: "Slide 4*MG8/10/12RL ghi yêu cầu >=250 A/100 V."
@@ -706,10 +706,10 @@
         explain: "Phần đấu nối DO của máy phát ghi dải điện áp đầu ra máy phát là 187 V - 264 V."
       },
       {
-        q: "Trước khi chạy thử, trạng thái công tắc DC và máy cắt AC cần như thế nào?",
+        q: "Trước khi chạy thử, trạng thái công tắc DC và CB AC cần như thế nào?",
         options: ["Ở vị trí OFF", "Ở vị trí ON", "DC ON và AC OFF", "DC OFF và AC ON"],
         answer: 0,
-        explain: "Phần kiểm tra trước khi chạy thử ghi công tắc DC và máy cắt AC phải ở vị trí OFF."
+        explain: "Phần kiểm tra trước khi chạy thử ghi công tắc DC và CB AC phải ở vị trí OFF."
       },
       {
         q: "LCD initialization sẽ kích hoạt trong hai trường hợp nào?",
@@ -958,13 +958,13 @@
         explain: "Bảng Electrical Connection Overview ghi additional grounding cable same as PE wire in AC cable."
       },
       {
-        q: "Cổng AC của inverter cần được trang bị loại máy cắt nào?",
-        options: ["Máy cắt AC tép loại C", "Máy cắt DC loại B", "Chỉ dùng RCD thay cho máy cắt", "Cầu chì PV 20 A"],
+        q: "Cổng AC của inverter cần được trang bị loại CB nào?",
+        options: ["CB AC tép loại C", "CB DC loại B", "Chỉ dùng RCD thay cho CB", "Cầu chì PV 20 A"],
         answer: 0,
-        explain: "Phần đấu nối AC ghi cổng/đầu nối AC phải được trang bị máy cắt AC tép loại C."
+        explain: "Phần đấu nối AC ghi cổng/đầu nối AC phải được trang bị CB AC tép loại C."
       },
       {
-        q: "Theo local regulations, RCD được lắp với mục đích chính nào?",
+        q: "Theo một số quy định về an toàn điện, RCD được lắp với mục đích chính nào?",
         options: ["Bảo vệ rò điện/chạm đất", "Tăng công suất PV", "Tăng điện áp pin", "Xóa lỗi BMS"],
         answer: 0,
         explain: "AC Connection ghi lắp RCDs phù hợp tại vị trí cần thiết để earth leakage protection."
@@ -977,9 +977,9 @@
       },
       {
         q: "Giữa pin và inverter cần trang bị thiết bị bảo vệ nào?",
-        options: ["Máy cắt DC", "Máy cắt AC loại C", "Chỉ dùng RCD 30 mA", "Mô-đun WiNet-S2"],
+        options: ["CB DC", "CB AC loại C", "Chỉ dùng RCD 30 mA", "Mô-đun WiNet-S2"],
         answer: 0,
-        explain: "Phần đấu nối pin ghi cần trang bị máy cắt DC giữa pin và inverter."
+        explain: "Phần đấu nối pin ghi cần trang bị CB DC giữa pin và inverter."
       },
       {
         q: "Nếu đấu ngược cực dương/âm của cáp pin thì hậu quả được nêu là gì?",
@@ -1031,27 +1031,27 @@
       },
       {
         q: "Trong quy trình bật nguồn của hệ một máy, bước đầu tiên là gì?",
-        options: ["Bật máy cắt pin", "Bật máy cắt AC nối lưới", "Quan sát đèn LED", "Xoay công tắc DC sang OFF"],
+        options: ["Bật CB pin", "Bật CB AC nối lưới", "Quan sát đèn LED", "Xoay công tắc DC sang OFF"],
         answer: 0,
-        explain: "Quy trình bật nguồn hệ một máy ghi bước 1 là bật máy cắt pin."
+        explain: "Quy trình bật nguồn hệ một máy ghi bước 1 là bật CB pin."
       },
       {
-        q: "Trước khi đóng máy cắt AC giữa inverter và lưới, cần dùng thiết bị gì để kiểm tra điện áp AC?",
+        q: "Trước khi đóng CB AC giữa inverter và lưới, cần dùng thiết bị gì để kiểm tra điện áp AC?",
         options: ["Đồng hồ vạn năng ở thang AC", "Kìm dòng ở dây DC", "Máy đo nhiệt PT100", "Mô-đun WiNet-S2"],
         answer: 0,
         explain: "Slide quy trình bật nguồn ghi dùng đồng hồ vạn năng ở thang AC để đảm bảo điện áp AC nằm trong dải quy định."
       },
       {
         q: "Trong quy trình bật nguồn của hệ nhiều inverter, cần tránh thao tác nào?",
-        options: ["Không đóng đồng thời tất cả máy cắt giữa inverter và pin", "Không bật từng pin theo thứ tự", "Không thiết lập máy chính-máy phụ", "Không bật công tắc DC"],
+        options: ["Không đóng đồng thời tất cả CB giữa inverter và pin", "Không bật từng pin theo thứ tự", "Không thiết lập máy chính-máy phụ", "Không bật công tắc DC"],
         answer: 0,
-        explain: "Quy trình bật nguồn hệ nhiều inverter ghi không đóng đồng thời tất cả máy cắt giữa inverter và pin."
+        explain: "Quy trình bật nguồn hệ nhiều inverter ghi không đóng đồng thời tất cả CB giữa inverter và pin."
       },
       {
-        q: "Nếu còn máy cắt đang mở trong hệ nhiều inverter, kết nối lưới có thể gây lỗi nào khi tải độc lập lưới nặng?",
+        q: "Nếu còn CB đang mở trong hệ nhiều inverter, kết nối lưới có thể gây lỗi nào khi tải độc lập lưới nặng?",
         options: ["Lỗi 113 quá dòng tức thời bypass", "Lỗi 714 truyền thông BMS", "Lỗi 106 cáp nối đất", "Lỗi 038 rơ-le"],
         answer: 0,
-        explain: "Slide hệ nhiều inverter ghi nếu còn máy cắt đang mở, kết nối lưới có thể kích hoạt lỗi 113 khi tải nặng nối vào cổng độc lập lưới."
+        explain: "Slide hệ nhiều inverter ghi nếu còn CB đang mở, kết nối lưới có thể kích hoạt lỗi 113 khi tải nặng nối vào cổng độc lập lưới."
       }
     ];
 
