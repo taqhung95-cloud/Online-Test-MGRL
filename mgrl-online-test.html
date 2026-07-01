@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài kiểm tra MGRL Series B0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --ink: #17202a;
+      --muted: #5d6a78;
+      --line: #d9e0ea;
+      --brand: #f2791f;
+      --brand-dark: #b55313;
+      --ok: #167a46;
+      --bad: #b42318;
+      --panel: #ffffff;
+      --soft: #eef4f9;
+      --focus: #1167b1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .topbar {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, #f2791f 0 50%, transparent 50%),
+        linear-gradient(315deg, #1167b1 0 50%, #ffffff 50%);
+      border: 1px solid #f0b07a;
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .timer {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-weight: 700;
+      min-width: 152px;
+      justify-content: center;
+    }
+
+    .timer::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--ok);
+      display: inline-block;
+    }
+
+    .timer.warning::before { background: var(--bad); }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px 20px 48px;
+    }
+
+    .setup, .result, .question {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(20, 36, 58, 0.06);
+    }
+
+    .setup {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: end;
+    }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 520px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 13px;
+      font-size: 15px;
+      color: var(--ink);
+      outline: none;
+      background: #ffffff;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field-grid input[type="text"] {
+      max-width: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(17, 103, 177, 0.16);
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      background: var(--brand);
+      color: #ffffff;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 15px;
+      min-height: 44px;
+    }
+
+    button:hover { background: var(--brand-dark); }
+    button:disabled { cursor: not-allowed; opacity: 0.55; }
+
+    .secondary {
+      background: #ffffff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .secondary:hover { background: var(--soft); }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .quizbar {
+      display: none;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 18px 0;
+    }
+
+    .progress {
+      height: 10px;
+      background: #dfe7ef;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #1167b1, #f2791f);
+      transition: width 180ms ease;
+    }
+
+    .answered {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .questions {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .question {
+      padding: 18px;
+    }
+
+    .qhead {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .qno {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #17202a;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .qtext {
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 700;
+      padding-top: 5px;
+    }
+
+    .options {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .option {
+      display: grid;
+      grid-template-columns: 20px 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px 16px;
+      background: #ffffff;
+      cursor: pointer;
+      min-height: 54px;
+    }
+
+    .option:hover { background: #f8fbff; border-color: #b9c9d9; }
+    .option input { margin: 0; width: 17px; height: 17px; }
+    .letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .answer-text {
+      min-width: 0;
+      line-height: 1.35;
+      color: #334155;
+      font-size: 15px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .option:has(input:checked) {
+      border-color: #7aa7ff;
+      background: #f4f8ff;
+    }
+
+    .option:has(input:checked) .letter {
+      background: #477cff;
+      color: #ffffff;
+    }
+
+    .question.correct { border-color: rgba(22, 122, 70, 0.42); }
+    .question.incorrect { border-color: rgba(180, 35, 24, 0.42); }
+    .option.correct { border-color: var(--ok); background: #eef8f2; }
+    .option.incorrect { border-color: var(--bad); background: #fff1ef; }
+
+    .explain {
+      display: none;
+      margin-top: 12px;
+      color: var(--muted);
+      background: #f8fafc;
+      border-left: 4px solid var(--line);
+      padding: 10px 12px;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .submitted .explain { display: block; }
+
+    .actions {
+      display: none;
+      position: sticky;
+      bottom: 0;
+      background: rgba(245, 247, 251, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 14px 0 0;
+      margin-top: 18px;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .result {
+      display: none;
+      padding: 18px;
+      margin-top: 18px;
+      border-left: 6px solid var(--brand);
+    }
+
+    .score {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 6px;
+    }
+
+    .result p { margin: 6px 0 0; color: var(--muted); }
+
+    @media (max-width: 720px) {
+      .topbar, .setup, .quizbar {
+        grid-template-columns: 1fr;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timer {
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .setup button, .actions button {
+        width: 100%;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="title">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>Bài kiểm tra MGRL Series B0</h1>
+          <div class="sub">Product Training on MGRL - Sungrow</div>
+        </div>
+      </div>
+      <div id="timer" class="timer">60:00</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="setup" class="setup">
+      <div>
+        <div class="field-grid">
+          <div>
+            <label for="studentName">Người làm bài</label>
+            <input id="studentName" type="text" placeholder="Nhập họ tên">
+          </div>
+          <div>
+            <label for="companyName">Công ty</label>
+            <input id="companyName" type="text" placeholder="Nhập tên công ty">
+          </div>
+          <div>
+            <label for="contactInfo">Email/SĐT</label>
+            <input id="contactInfo" type="text" placeholder="Nhập email hoặc số điện thoại">
+          </div>
+        </div>
+        <div class="meta">
+          <span class="pill">30 câu mỗi lượt</span>
+          <span class="pill">Ngân hàng 50 câu</span>
+          <span class="pill">Thời gian 60 phút</span>
+          <span class="pill">Xáo trộn câu hỏi và đáp án</span>
+        </div>
+      </div>
+      <button id="startBtn" type="button">Bắt đầu</button>
+    </section>
+
+    <section id="result" class="result" aria-live="polite"></section>
+
+    <div id="quizbar" class="quizbar">
+      <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+      <div id="answered" class="answered">0/30 đã chọn</div>
+    </div>
+
+    <form id="quiz" class="questions"></form>
+
+    <div id="actions" class="actions">
+      <button id="submitBtn" type="button">Nộp bài</button>
+      <button id="restartBtn" class="secondary" type="button">Làm đề khác</button>
+    </div>
+  </main>
+
+  <script>
+    const QUESTION_COUNT = 30;
+    const DURATION_SECONDS = 60 * 60;
+    const APPS_SCRIPT_URL = "";
+
+    const questionBank = [
+      {
+        q: "Điện áp đầu vào PV tối đa của các model MG5RL đến MG12RL là bao nhiêu?",
+        options: ["500 V", "450 V", "550 V", "600 V"],
+        answer: 0,
+        explain: "Bảng Main Technical Parameters nêu Max. PV input voltage là 500 V."
+      },
+      {
+        q: "Điện áp đầu vào tối thiểu và điện áp khởi động của PV được nêu như thế nào?",
+        options: ["40 V / 50 V", "50 V / 60 V", "35 V / 45 V", "45 V / 55 V"],
+        answer: 0,
+        explain: "Thông số trong slide là Min. PV input voltage / Startup input voltage = 40 V / 50 V."
+      },
+      {
+        q: "Điện áp đầu vào PV định mức của dòng MGRL là bao nhiêu?",
+        options: ["360 V", "320 V", "380 V", "400 V"],
+        answer: 0,
+        explain: "Rated PV input voltage trong bảng thông số là 360 V."
+      },
+      {
+        q: "Dải điện áp hoạt động MPPT của dòng MGRL là dải nào?",
+        options: ["40 V - 425 V", "50 V - 450 V", "60 V - 500 V", "80 V - 425 V"],
+        answer: 0,
+        explain: "MPPT operating voltage range được ghi là 40 V - 425 V."
+      },
+      {
+        q: "Nhóm MG8RL/MG10RL/MG12RL có bao nhiêu bộ MPPT độc lập?",
+        options: ["3 MPPT", "2 MPPT", "4 MPPT", "1 MPPT"],
+        answer: 0,
+        explain: "Bảng thông số thể hiện MG8RL/MG10RL/MG12RL có 3 independent MPP trackers."
+      },
+      {
+        q: "Số chuỗi PV trên mỗi MPPT của nhóm MG8RL/MG10RL/MG12RL được ghi như thế nào?",
+        options: ["1 / 1 / 1", "2 / 1 / 1", "1 / 2 / 1", "2 / 2 / 1"],
+        answer: 0,
+        explain: "No. of PV strings per MPPT với nhóm 3 MPPT là 1 / 1 / 1."
+      },
+      {
+        q: "Dòng đầu vào PV tối đa của MG5RL/MG6RL là bao nhiêu?",
+        options: ["40 A (20 A / 20 A)", "50 A (25 A / 25 A)", "60 A (30 A / 30 A)", "45 A (20 A / 25 A)"],
+        answer: 0,
+        explain: "MG5RL/MG6RL có Max. PV input current = 40 A, chia 20 A / 20 A."
+      },
+      {
+        q: "Dòng ngắn mạch DC tối đa của nhóm MG8RL/MG10RL/MG12RL là bao nhiêu?",
+        options: ["75 A (25 A / 25 A / 25 A)", "60 A (20 A / 20 A / 20 A)", "90 A (30 A / 30 A / 30 A)", "72 A (24 A / 24 A / 24 A)"],
+        answer: 0,
+        explain: "Max. DC short-circuit current cho nhóm 3 MPPT là 75 A, mỗi nhánh 25 A."
+      },
+      {
+        q: "Dải điện áp pin của các model MGRL là dải nào?",
+        options: ["40 V - 60 V", "36 V - 60 V", "48 V - 72 V", "50 V - 80 V"],
+        answer: 0,
+        explain: "Battery voltage range trong tài liệu là 40 V - 60 V."
+      },
+      {
+        q: "Dòng sạc/xả tối đa của MG10RL là bao nhiêu?",
+        options: ["220 A / 220 A", "190 A / 190 A", "240 A / 240 A", "200 A / 200 A"],
+        answer: 0,
+        explain: "Bảng Battery data ghi MG10RL có Max. charge / discharge current = 220 A / 220 A."
+      },
+      {
+        q: "Công suất sạc/xả tối đa của MG12RL là bao nhiêu?",
+        options: ["12000 W / 12000 W", "10000 W / 10000 W", "11000 W / 11000 W", "13860 W / 13860 W"],
+        answer: 0,
+        explain: "MG12RL có Max. charge / discharge power = 12000 W / 12000 W."
+      },
+      {
+        q: "Công suất AC output định mức của MG8RL là bao nhiêu?",
+        options: ["8000 W", "6000 W", "10000 W", "12000 W"],
+        answer: 0,
+        explain: "Rated AC output power của MG8RL là 8000 W."
+      },
+      {
+        q: "Dòng AC output tối đa của MG12RL là bao nhiêu?",
+        options: ["54.5 A", "45.5 A", "50.0 A", "63.0 A"],
+        answer: 0,
+        explain: "Max. AC output current của MG12RL được ghi là 54.5 A."
+      },
+      {
+        q: "Dải điện áp AC của dòng MGRL là dải nào?",
+        options: ["154 V - 276 V", "176 V - 264 V", "187 V - 264 V", "180 V - 276 V"],
+        answer: 0,
+        explain: "AC voltage range trong bảng thông số là 154 V - 276 V."
+      },
+      {
+        q: "Dải tần số lưới được ghi trong bảng thông số là lựa chọn nào?",
+        options: ["45 Hz - 55 Hz / 55 Hz - 65 Hz", "47 Hz - 53 Hz / 57 Hz - 63 Hz", "45 Hz - 60 Hz / 50 Hz - 65 Hz", "50 Hz - 55 Hz / 60 Hz - 65 Hz"],
+        answer: 0,
+        explain: "Grid frequency range là 45 Hz - 55 Hz / 55 Hz - 65 Hz."
+      },
+      {
+        q: "Giá trị THD hài hòa ở công suất định mức của phần AC được nêu là bao nhiêu?",
+        options: ["< 3%", "< 2%", "< 4%", "< 5%"],
+        answer: 0,
+        explain: "Harmonic (THD) được ghi là < 3% of rated power."
+      },
+      {
+        q: "Ở chế độ on-grid backup, dòng đầu ra tối đa cho backup load của nhóm MG8RL/MG10RL/MG12RL là bao nhiêu?",
+        options: ["63 A", "40 A", "54.5 A", "75 A"],
+        answer: 0,
+        explain: "Backup Data (on grid mode) ghi Max. output current for backup load là 63 A cho nhóm công suất lớn."
+      },
+      {
+        q: "Thời gian chuyển backup được ghi trong thông số là bao nhiêu?",
+        options: ["<= 4 ms", "<= 10 ms", "<= 20 ms", "<= 40 ms"],
+        answer: 0,
+        explain: "Backup switch time trong bảng là <= 4 ms."
+      },
+      {
+        q: "Cấp bảo vệ vỏ máy của dòng MGRL là cấp nào?",
+        options: ["IP65", "IP54", "IP66", "IP20"],
+        answer: 0,
+        explain: "General Data ghi Degree of protection là IP65."
+      },
+      {
+        q: "Phương pháp làm mát của MG5RL/MG6RL được nêu là gì?",
+        options: ["Đối lưu tự nhiên", "Quạt làm mát", "Làm mát bằng chất lỏng", "Quạt và nước kết hợp"],
+        answer: 0,
+        explain: "Cooling method cho nhóm nhỏ là Natural convection."
+      },
+      {
+        q: "Các giao tiếp truyền thông nào được liệt kê cho dòng MGRL?",
+        options: ["CAN, RS485, Ethernet, WLAN", "CAN, RS232, Ethernet, Bluetooth", "RS485, USB, WLAN, Zigbee", "CAN, RS485, 4G, PLC"],
+        answer: 0,
+        explain: "Dòng Communication trong General Data ghi CAN, RS485, Ethernet, WLAN."
+      },
+      {
+        q: "Cổng đa chức năng có trạng thái mặc định nào khi không cấu hình thiết bị?",
+        options: ["No connection", "DG connected", "Staged Load Connected", "Grid-Tie Retrofit"],
+        answer: 0,
+        explain: "Phần Multi-function port mode có Option 1: No connection, áp dụng khi không có thiết bị kết nối."
+      },
+      {
+        q: "CT tiêu chuẩn đi kèm có chiều dài bao nhiêu?",
+        options: ["5 m", "3 m", "10 m", "15 m"],
+        answer: 0,
+        explain: "System Application Solution ghi Standard CT: 5 meters in length."
+      },
+      {
+        q: "Với hệ retrofit PV bên thứ ba, tài liệu yêu cầu dùng thiết bị nào?",
+        options: ["DTSU666-20 dual-channel smart meter và external voltage-type CTs", "S100 meter và current-output CTs", "WiNet-S2 và CT 50A/50mA", "DTSU666-20 một kênh và CT current-output"],
+        answer: 0,
+        explain: "Trang Grid Connection Port Retrofit yêu cầu SUNGROW dual-channel smart meter DTSU666-20 và external voltage-type CTs."
+      },
+      {
+        q: "Số lượng máy tối đa trong Multi-machine Pure Off-grid System là bao nhiêu?",
+        options: ["4 units", "3 units", "5 units", "8 units"],
+        answer: 0,
+        explain: "Tiêu đề slide ghi Multi-machine Pure Off-grid System (max. 4 units)."
+      },
+      {
+        q: "Nếu số inverter song song từ 5 máy trở lên thì cần làm gì?",
+        options: ["Liên hệ Sungrow technical support", "Đặt tất cả về chế độ slave", "Tắt CT và meter", "Chỉ dùng kết nối Wi-Fi"],
+        answer: 0,
+        explain: "Các slide multi-machine ghi nếu paralleled inverters >=5, liên hệ Sungrow technical support."
+      },
+      {
+        q: "Trong hệ Single Off-Grid System, phía PV được yêu cầu như thế nào?",
+        options: ["PV modules must be connected", "PV modules can be omitted", "PV side must be floating", "PV only connects through meter"],
+        answer: 0,
+        explain: "Slide Single Off-Grid System ghi PV side: PV modules must be connected."
+      },
+      {
+        q: "Cấu hình lead-acid battery chỉ được hỗ trợ trong trường hợp nào?",
+        options: ["Chỉ single MG5-12RL system", "Mọi multi-inverter system", "Chỉ MG8/10/12RL song song", "Tất cả hệ có trên 2 inverter"],
+        answer: 0,
+        explain: "Slide lead-acid ghi Only a single MG5-12RL system supports the configuration of lead-acid batteries."
+      },
+      {
+        q: "Cảm biến nhiệt độ khuyến nghị cho lead-acid battery là model nào?",
+        options: ["PT100", "PT1000", "NTC10K", "KTY84"],
+        answer: 0,
+        explain: "Tài liệu khuyến nghị temperature sensor PT100."
+      },
+      {
+        q: "Số lượng MBL160 tối đa có thể kết nối song song là bao nhiêu?",
+        options: ["20 units", "12 units", "16 units", "24 units"],
+        answer: 0,
+        explain: "Các slide MBL160 ghi maximum of 20 units can be connected in parallel."
+      },
+      {
+        q: "Với 4*MG5/6RL + MBL160/3rd-party lithium battery, DC breaker được nêu tối thiểu bao nhiêu?",
+        options: [">=150 A / 100 V", ">=100 A / 100 V", ">=200 A / 100 V", ">=250 A / 100 V"],
+        answer: 0,
+        explain: "Slide 4*MG5/6RL ghi yêu cầu >=150 A/100 V."
+      },
+      {
+        q: "Với 4*MG8/10/12RL + MBL160/3rd-party lithium battery, DC breaker được nêu tối thiểu bao nhiêu?",
+        options: [">=250 A / 100 V", ">=150 A / 100 V", ">=200 A / 100 V", ">=300 A / 100 V"],
+        answer: 0,
+        explain: "Slide 4*MG8/10/12RL ghi yêu cầu >=250 A/100 V."
+      },
+      {
+        q: "Tính năng Multi-function Port Load Connection yêu cầu WiNet-S2 tối thiểu phiên bản nào?",
+        options: ["WINET-SV300.001.03.P029B001 or later", "WINET-SV300.001.03.P022 or later", "WINET-SV300.001.03.P026B002 or later", "WINET-SV300.001.03.P030 or later"],
+        answer: 0,
+        explain: "Trang New Features/Scenarios ghi Multi-function Port Load Connection cần WiNet-S2 P029B001 or later."
+      },
+      {
+        q: "Mục đích chính của việc chừa khoảng trống xung quanh inverter khi lắp đặt là gì?",
+        options: ["Thông gió và tản nhiệt", "Tăng tín hiệu Wi-Fi", "Tăng điện áp PV", "Giảm yêu cầu tiếp địa"],
+        answer: 0,
+        explain: "Slide Installation Space ghi cần đủ khoảng trống để ventilation and heat dissipation."
+      },
+      {
+        q: "Cổng COM1 trên vùng đấu nối được mô tả dùng để kết nối với thiết bị nào?",
+        options: ["WiNet-S2 communication module", "Battery power cable", "PV positive connector", "AC protective cover"],
+        answer: 0,
+        explain: "COM1 là communication accessory port kết nối WiNet-S2 communication module."
+      },
+      {
+        q: "Cổng COM2 hỗ trợ các kết nối truyền thông nào?",
+        options: ["RSD, CT, Meter, RS-485/CAN, DRM, DO", "PV+, PV-, BAT+, BAT-, GRID, GEN", "WiNet-S2, WLAN, Ethernet only", "Backup, GEN, GRID, PE, N, L"],
+        answer: 0,
+        explain: "COM2 được mô tả là communication connection for RSD, CT, Meter, RS-485/CAN, DRM, DO."
+      },
+      {
+        q: "Để đáp ứng yêu cầu chống nhiễu, cáp Ethernet nào được khuyến nghị?",
+        options: ["CAT 5E hoặc CAT 6 shielded cables", "CAT 3 unshielded cables", "USB-C shielded cables", "Coaxial RG6 cables"],
+        answer: 0,
+        explain: "Electrical Connection Overview ghi shielded Ethernet cables là bắt buộc, khuyến nghị CAT 5E hoặc CAT 6."
+      },
+      {
+        q: "Với AC Connection của MG8/10/12RL, thứ tự đấu nối cáp được nêu là gì?",
+        options: ["BACKUP, GEN, rồi GRID", "GRID, GEN, rồi BACKUP", "GEN, GRID, rồi BACKUP", "BACKUP, GRID, rồi GEN"],
+        answer: 0,
+        explain: "Slide AC Connection (MG8/10/12RL) ghi connect cables in order: BACKUP, GEN, then GRID."
+      },
+      {
+        q: "Điều kiện điện áp hở mạch của mỗi chuỗi PV cần thỏa mãn là gì?",
+        options: ["Voc <= Vbat x 9", "Voc <= Vbat x 6", "Voc <= Vbat x 12", "Voc <= Vbat x 15"],
+        answer: 0,
+        explain: "PV Connection ghi Voc phải thỏa mãn Voc <= Vbat x 9."
+      },
+      {
+        q: "Chiều dài cáp nguồn pin được khuyến nghị là bao nhiêu?",
+        options: ["Nhỏ hơn 10 m", "Nhỏ hơn 5 m", "Nhỏ hơn 15 m", "Nhỏ hơn 20 m"],
+        answer: 0,
+        explain: "Battery Connection ghi length of battery power cables is recommended to be less than 10 meters."
+      },
+      {
+        q: "Nếu khoảng cách giữa inverter và CT vượt quá 5 m, giải pháp khuyến nghị là gì?",
+        options: ["Dùng DTSU666-20 kèm external 100A/333mV CT", "Nối dài cáp CT bằng mọi cách", "Đổi sang CT 63A/50mA", "Bỏ qua CT và chỉ dùng Wi-Fi"],
+        answer: 0,
+        explain: "Slide Current-type CT Connection khuyến nghị DTSU666-20 plus external 100A/333mV CT và không khuyến nghị nối dài cáp."
+      },
+      {
+        q: "Dải điện áp đầu ra generator được tài liệu nêu là bao nhiêu?",
+        options: ["187 V - 264 V", "154 V - 276 V", "176 V - 253 V", "200 V - 240 V"],
+        answer: 0,
+        explain: "Generator DO Connection ghi Generator output voltage range là 187 V - 264 V."
+      },
+      {
+        q: "Trước khi commissioning, trạng thái DC switch và AC circuit breaker cần như thế nào?",
+        options: ["Ở vị trí OFF", "Ở vị trí ON", "DC ON và AC OFF", "DC OFF và AC ON"],
+        answer: 0,
+        explain: "Inspection Before Commissioning ghi DC switch(es) và AC circuit breaker ở vị trí OFF."
+      },
+      {
+        q: "LCD initialization sẽ kích hoạt trong hai trường hợp nào?",
+        options: ["Lần đầu inverter được cấp nguồn hoặc sau factory reset", "Mỗi khi WiNet-S2 mất kết nối hoặc đổi mật khẩu", "Khi CT bị ngược chiều hoặc meter mất RS485", "Khi pin đầy hoặc PV không có điện"],
+        answer: 0,
+        explain: "LCD Initial Setup ghi initialization kích hoạt sau lần cấp nguồn đầu tiên và sau factory reset."
+      },
+      {
+        q: "CT mặc định trong mục Set grid settings có rating nào?",
+        options: ["100A/50mA", "100A/333mV", "250A/333mV", "63A/50mA"],
+        answer: 0,
+        explain: "Option Select CT (Default) ghi standard equipped CT rated 100A/50mA."
+      },
+      {
+        q: "Mật khẩu User và Installer mặc định trong More Settings lần lượt là gì?",
+        options: ["2025 và 1997", "1997 và 2025", "2024 và 1998", "2025 và 2001"],
+        answer: 0,
+        explain: "More Settings ghi User Password: 2025 và Installer Password: 1997."
+      },
+      {
+        q: "Giá trị mặc định của minimum output voltage during off-grid operation là bao nhiêu?",
+        options: ["80%", "60%", "70%", "100%"],
+        answer: 0,
+        explain: "Trang cấu hình điện áp off-grid ghi Default 80%, adjustable range 40%~100%."
+      },
+      {
+        q: "Sau khi inverter được power off, cần đợi tối thiểu bao lâu trước khi thao tác bên trong sau khi xác minh phần mang điện?",
+        options: ["10 phút", "5 phút", "15 phút", "20 phút"],
+        answer: 0,
+        explain: "Principles for Safe Operation và Power-Off Operation đều nêu cần đợi ít nhất 10 phút."
+      },
+      {
+        q: "Fault 106 Grounding Cable Fault được kích hoạt khi điện áp giữa N và vỏ máy vượt ngưỡng nào?",
+        options: ["30 V", "20 V", "40 V", "50 V"],
+        answer: 0,
+        explain: "Trang fault 106 ghi nếu điện áp giữa N line và casing lớn hơn protection value 30 V thì báo lỗi."
+      },
+      {
+        q: "Fault 714 BMS Communication Fault xảy ra trong điều kiện nào?",
+        options: ["Cấu hình lithium battery nhưng không phát hiện tín hiệu BMS", "Tổng tải off-grid vượt công suất hiện có", "Cáp grid đấu nhầm vào backup port", "Relay tự kiểm tra có điện áp bất thường"],
+        answer: 0,
+        explain: "Fault 714 được mô tả là khi đặt chế độ lithium battery connection nhưng không phát hiện BMS communication signal."
+      }
+    ];
+
+    const letters = ["A", "B", "C", "D"];
+    let quizQuestions = [];
+    let selected = new Map();
+    let remaining = DURATION_SECONDS;
+    let timerId = null;
+    let submitted = false;
+
+    const setupEl = document.getElementById("setup");
+    const quizEl = document.getElementById("quiz");
+    const resultEl = document.getElementById("result");
+    const quizbarEl = document.getElementById("quizbar");
+    const actionsEl = document.getElementById("actions");
+    const timerEl = document.getElementById("timer");
+    const answeredEl = document.getElementById("answered");
+    const progressFill = document.getElementById("progressFill");
+    const startBtn = document.getElementById("startBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const nameInput = document.getElementById("studentName");
+    const companyInput = document.getElementById("companyName");
+    const contactInput = document.getElementById("contactInfo");
+
+    function shuffle(items) {
+      const arr = items.slice();
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function formatTime(total) {
+      const minutes = Math.floor(total / 60).toString().padStart(2, "0");
+      const seconds = (total % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    function prepareQuiz() {
+      quizQuestions = shuffle(questionBank).slice(0, QUESTION_COUNT).map((item, index) => {
+        const options = item.options.map((text, optionIndex) => ({
+          text,
+          correct: optionIndex === item.answer
+        }));
+        return {
+          ...item,
+          no: index + 1,
+          shuffledOptions: shuffle(options)
+        };
+      });
+    }
+
+    function renderQuiz() {
+      quizEl.innerHTML = quizQuestions.map((item, index) => {
+        const options = item.shuffledOptions.map((option, optionIndex) => `
+          <label class="option" data-q="${index}" data-option="${optionIndex}">
+            <input type="radio" name="q${index}" value="${optionIndex}">
+            <span class="letter">${letters[optionIndex]}</span>
+            <span class="answer-text">${option.text}</span>
+          </label>
+        `).join("");
+
+        return `
+          <section class="question" data-question="${index}">
+            <div class="qhead">
+              <div class="qno">${index + 1}</div>
+              <div class="qtext">${item.q}</div>
+            </div>
+            <div class="options">${options}</div>
+            <div class="explain">${item.explain}</div>
+          </section>
+        `;
+      }).join("");
+    }
+
+    function updateProgress() {
+      const count = selected.size;
+      answeredEl.textContent = `${count}/${QUESTION_COUNT} đã chọn`;
+      progressFill.style.width = `${(count / QUESTION_COUNT) * 100}%`;
+    }
+
+    function startTimer() {
+      clearInterval(timerId);
+      remaining = DURATION_SECONDS;
+      timerEl.textContent = formatTime(remaining);
+      timerEl.classList.remove("warning");
+      timerId = setInterval(() => {
+        remaining -= 1;
+        timerEl.textContent = formatTime(Math.max(remaining, 0));
+        if (remaining <= 300) timerEl.classList.add("warning");
+        if (remaining <= 0) submitQuiz(true);
+      }, 1000);
+    }
+
+    function startQuiz() {
+      submitted = false;
+      selected = new Map();
+      resultEl.style.display = "none";
+      resultEl.innerHTML = "";
+      setupEl.style.display = "none";
+      quizbarEl.style.display = "grid";
+      actionsEl.style.display = "flex";
+      quizEl.classList.remove("submitted");
+      prepareQuiz();
+      renderQuiz();
+      updateProgress();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function buildSubmission(score, percent, auto) {
+      const answers = quizQuestions.map((item, questionIndex) => {
+        const chosenIndex = selected.get(questionIndex);
+        const chosenOption = Number.isInteger(chosenIndex) ? item.shuffledOptions[chosenIndex] : null;
+        const correctOption = item.shuffledOptions.find((option) => option.correct);
+        return {
+          no: questionIndex + 1,
+          question: item.q,
+          selected: chosenOption ? chosenOption.text : "",
+          correct: correctOption ? correctOption.text : "",
+          isCorrect: Boolean(chosenOption && chosenOption.correct)
+        };
+      });
+
+      return {
+        submittedAt: new Date().toISOString(),
+        name: nameInput.value.trim(),
+        company: companyInput.value.trim(),
+        contact: contactInput.value.trim(),
+        score,
+        total: QUESTION_COUNT,
+        percent,
+        autoSubmitted: auto,
+        durationSeconds: DURATION_SECONDS - Math.max(remaining, 0),
+        answers
+      };
+    }
+
+    async function saveSubmission(payload) {
+      if (!APPS_SCRIPT_URL) {
+        return { skipped: true };
+      }
+
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      return { skipped: false };
+    }
+
+    function submitQuiz(auto = false) {
+      if (submitted) return;
+      submitted = true;
+      clearInterval(timerId);
+
+      let score = 0;
+      quizQuestions.forEach((item, questionIndex) => {
+        const questionEl = quizEl.querySelector(`[data-question="${questionIndex}"]`);
+        const chosenIndex = selected.get(questionIndex);
+        const optionEls = questionEl.querySelectorAll(".option");
+        let isCorrect = false;
+
+        optionEls.forEach((optionEl, optionIndex) => {
+          const input = optionEl.querySelector("input");
+          input.disabled = true;
+          const option = item.shuffledOptions[optionIndex];
+          if (option.correct) optionEl.classList.add("correct");
+          if (chosenIndex === optionIndex && !option.correct) optionEl.classList.add("incorrect");
+          if (chosenIndex === optionIndex && option.correct) isCorrect = true;
+        });
+
+        if (isCorrect) {
+          score += 1;
+          questionEl.classList.add("correct");
+        } else {
+          questionEl.classList.add("incorrect");
+        }
+      });
+
+      const student = nameInput.value.trim() || "Người làm bài";
+      const percent = Math.round((score / QUESTION_COUNT) * 100);
+      const payload = buildSubmission(score, percent, auto);
+      resultEl.innerHTML = `
+        <div class="score">${score}/${QUESTION_COUNT} điểm - ${percent}%</div>
+        <p>${student}${auto ? " đã hết thời gian và bài đã được nộp tự động." : " đã hoàn thành bài kiểm tra."}</p>
+        <p>Các câu đúng/sai và giải thích đang hiển thị bên dưới.</p>
+        <p id="saveStatus">Đang lưu kết quả...</p>
+      `;
+      resultEl.style.display = "block";
+      quizEl.classList.add("submitted");
+      submitBtn.disabled = true;
+      timerEl.textContent = auto ? "00:00" : timerEl.textContent;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      const saveStatus = document.getElementById("saveStatus");
+      saveSubmission(payload)
+        .then((result) => {
+          saveStatus.textContent = result.skipped
+            ? "Chưa cấu hình Google Sheets, kết quả chỉ hiển thị trên trình duyệt này."
+            : "Đã gửi kết quả về Google Sheets.";
+        })
+        .catch(() => {
+          saveStatus.textContent = "Không gửi được kết quả về Google Sheets. Vui lòng kiểm tra kết nối hoặc Apps Script URL.";
+        });
+    }
+
+    quizEl.addEventListener("change", (event) => {
+      if (submitted || event.target.type !== "radio") return;
+      const questionIndex = Number(event.target.name.replace("q", ""));
+      selected.set(questionIndex, Number(event.target.value));
+      updateProgress();
+    });
+
+    startBtn.addEventListener("click", startQuiz);
+    submitBtn.addEventListener("click", () => submitQuiz(false));
+    restartBtn.addEventListener("click", () => {
+      clearInterval(timerId);
+      submitBtn.disabled = false;
+      startQuiz();
+    });
+  </script>
+</body>
+</html>
