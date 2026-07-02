@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bài kiểm tra MGRL Series </title>
+  <title>Bài kiểm tra MGRL Series</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -363,6 +363,30 @@
       font-size: 28px;
       font-weight: 800;
       margin: 0 0 6px;
+    }
+
+    .result-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      padding: 7px 12px;
+      margin-left: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      vertical-align: middle;
+    }
+
+    .result-status.pass {
+      background: #eef8f2;
+      color: var(--ok);
+      border: 1px solid rgba(22, 122, 70, 0.3);
+    }
+
+    .result-status.failed {
+      background: #fff1ef;
+      color: var(--bad);
+      border: 1px solid rgba(180, 35, 24, 0.3);
     }
 
     .result p { margin: 6px 0 0; color: var(--muted); }
@@ -1250,9 +1274,10 @@
       const student = nameInput.value.trim() || "Người làm bài";
       const percent = Math.round((score / QUESTION_COUNT) * 100);
       const resultStatus = percent >= 80 ? "PASS" : "FAILED";
+      const resultStatusClass = resultStatus === "PASS" ? "pass" : "failed";
       const payload = buildSubmission(score, percent, resultStatus, auto);
       resultEl.innerHTML = `
-      <div class="score">${score}/${QUESTION_COUNT} điểm - ${percent}% - ${resultStatus}</div>
+      <div class="score">${score}/${QUESTION_COUNT} điểm - ${percent}% <span class="result-status ${resultStatusClass}">${resultStatus}</span></div>
       <p>${student}${auto ? " đã hết thời gian và bài đã được nộp tự động." : " đã hoàn thành bài kiểm tra."}</p>
       <p>Các câu đúng/sai và giải thích đang hiển thị bên dưới.</p>
       <p id="saveStatus">Đang lưu kết quả...</p>
