@@ -1172,7 +1172,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function buildSubmission(score, percent, auto) {
+    function buildSubmission(score, percent, resultStatus, auto) {
       const answers = quizQuestions.map((item, questionIndex) => {
         const chosenIndex = selected.get(questionIndex);
         const chosenOption = Number.isInteger(chosenIndex) ? item.shuffledOptions[chosenIndex] : null;
@@ -1194,6 +1194,7 @@
         score,
         total: QUESTION_COUNT,
         percent,
+        resultStatus,
         autoSubmitted: auto,
         durationSeconds: DURATION_SECONDS - Math.max(remaining, 0),
         answers
@@ -1248,12 +1249,13 @@
 
       const student = nameInput.value.trim() || "Người làm bài";
       const percent = Math.round((score / QUESTION_COUNT) * 100);
-      const payload = buildSubmission(score, percent, auto);
+      const resultStatus = percent >= 80 ? "PASS" : "FAILED";
+      const payload = buildSubmission(score, percent, resultStatus, auto);
       resultEl.innerHTML = `
-        <div class="score">${score}/${QUESTION_COUNT} điểm - ${percent}%</div>
-        <p>${student}${auto ? " đã hết thời gian và bài đã được nộp tự động." : " đã hoàn thành bài kiểm tra."}</p>
-        <p>Các câu đúng/sai và giải thích đang hiển thị bên dưới.</p>
-        <p id="saveStatus">Đang lưu kết quả...</p>
+      <div class="score">${score}/${QUESTION_COUNT} điểm - ${percent}% - ${resultStatus}</div>
+      <p>${student}${auto ? " đã hết thời gian và bài đã được nộp tự động." : " đã hoàn thành bài kiểm tra."}</p>
+      <p>Các câu đúng/sai và giải thích đang hiển thị bên dưới.</p>
+      <p id="saveStatus">Đang lưu kết quả...</p>
       `;
       resultEl.style.display = "block";
       quizEl.classList.add("submitted");
