@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bài kiểm tra MGRL Series </title>
+  <meta name="theme-color" content="#f06f22">
+  <title>BÀI ĐÁNH GIÁ KIẾN THỨC SẢN PHẨM HYBRID INVERTER MGRL 2026</title>
+  <meta name="author" content="Sungrow Product Training">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
-      --bg: #f5f7fb;
-      --ink: #17202a;
-      --muted: #5d6a78;
-      --line: #d9e0ea;
-      --brand: #f2791f;
-      --brand-dark: #b55313;
-      --ok: #167a46;
-      --bad: #b42318;
+      --bg: #f4f6f8;
       --panel: #ffffff;
-      --soft: #eef4f9;
-      --focus: #1167b1;
+      --ink: #19232d;
+      --muted: #66737f;
+      --line: #dce3e9;
+      --orange: #f06f22;
+      --orange-dark: #c65311;
+      --blue: #1268a9;
+      --green: #198754;
+      --red: #c23128;
+      --soft: #f6f8fa;
+      --shadow: 0 10px 28px rgba(32, 46, 62, 0.07);
     }
 
     * { box-sizing: border-box; }
@@ -28,201 +31,307 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Montserrat", Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--ink);
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
     }
 
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--line);
+    button, input { font: inherit; }
+    [hidden] { display: none !important; }
+
+    .header {
       position: sticky;
       top: 0;
-      z-index: 5;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
 
-    .topbar {
-      max-width: 1180px;
+    .header-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 82px;
       margin: 0 auto;
-      padding: 16px 20px;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
       align-items: center;
+      padding: 12px 0;
     }
 
-    .title {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 20px;
       min-width: 0;
     }
 
-    .mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, #f2791f 0 50%, transparent 50%),
-        linear-gradient(315deg, #1167b1 0 50%, #ffffff 50%);
-      border: 1px solid #f0b07a;
+    .brand-logo {
+      width: 154px;
+      height: auto;
       flex: 0 0 auto;
+      display: block;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      border-left: 1px solid var(--line);
+      padding-left: 20px;
     }
 
     h1 {
       margin: 0;
-      font-size: 22px;
-      line-height: 1.2;
+      max-width: 760px;
+      font-size: 19px;
+      line-height: 1.35;
+      font-weight: 800;
       letter-spacing: 0;
     }
 
-    .sub {
-      color: var(--muted);
-      font-size: 13px;
+    .subtitle {
       margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
     }
 
     .timer {
+      min-width: 136px;
+      height: 44px;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      border: 1px solid var(--line);
-      background: var(--soft);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-weight: 700;
-      min-width: 152px;
       justify-content: center;
+      gap: 9px;
+      border: 1px solid #cfdae4;
+      border-radius: 8px;
+      background: #edf4f9;
+      font-size: 16px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
     }
 
-    .timer::before {
-      content: "";
-      width: 12px;
-      height: 12px;
+    .timer-dot {
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
-      background: var(--ok);
-      display: inline-block;
+      background: var(--green);
     }
 
-    .timer.warning::before { background: var(--bad); }
+    .timer.warning .timer-dot { background: var(--red); }
 
     main {
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 22px 20px 48px;
+      padding: 28px 0 56px;
     }
 
-    .setup, .result, .question {
+    .panel {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(20, 36, 58, 0.06);
+      box-shadow: var(--shadow);
     }
 
-    .setup {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: end;
+    .login-panel {
+      max-width: 560px;
+      margin: 54px auto 0;
+      padding: 34px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--orange-dark);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 10px 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     label {
       display: block;
-      color: var(--muted);
-      font-size: 13px;
       margin-bottom: 8px;
+      color: #43515e;
+      font-size: 13px;
       font-weight: 700;
     }
 
+    input[type="email"],
     input[type="text"] {
       width: 100%;
-      max-width: 520px;
-      border: 1px solid var(--line);
+      min-height: 48px;
+      border: 1px solid #cbd5df;
       border-radius: 8px;
-      padding: 12px 13px;
-      font-size: 15px;
+      background: #fff;
       color: var(--ink);
+      padding: 11px 13px;
       outline: none;
-      background: #ffffff;
     }
 
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      align-items: end;
-    }
-
-    .field-grid input[type="text"] {
-      max-width: none;
-    }
-
+    input[type="email"]:focus,
     input[type="text"]:focus {
-      border-color: var(--focus);
-      box-shadow: 0 0 0 3px rgba(17, 103, 177, 0.16);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(18, 104, 169, 0.14);
     }
 
-    button {
+    .button {
+      min-height: 46px;
       border: 0;
       border-radius: 8px;
-      padding: 12px 16px;
-      background: var(--brand);
-      color: #ffffff;
-      font-weight: 700;
+      padding: 11px 18px;
+      background: var(--orange);
+      color: #fff;
       cursor: pointer;
-      font-size: 15px;
-      min-height: 44px;
+      font-weight: 800;
     }
 
-    button:hover { background: var(--brand-dark); }
-    button:disabled { cursor: not-allowed; opacity: 0.55; }
+    .button:hover { background: var(--orange-dark); }
+    .button:disabled { cursor: wait; opacity: 0.58; }
+    .login-panel .button { width: 100%; margin-top: 14px; }
+    #loginForm { margin-top: 24px; }
 
-    .secondary {
-      background: #ffffff;
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-
-    .secondary:hover { background: var(--soft); }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .pill {
-      border: 1px solid var(--line);
-      background: var(--soft);
-      border-radius: 999px;
-      padding: 7px 10px;
+    .login-message {
+      min-height: 20px;
+      margin: 12px 0 0;
+      color: var(--red);
       font-size: 13px;
-      color: var(--muted);
-      font-weight: 700;
+      font-weight: 600;
+      line-height: 1.45;
     }
 
-    .quizbar {
-      display: none;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
+    .registration-link {
+      width: 100%;
+      min-height: 44px;
+      display: inline-flex;
       align-items: center;
-      margin: 18px 0;
+      justify-content: center;
+      margin-top: 10px;
+      border: 1px solid #cbd5df;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .registration-link:hover {
+      border-color: var(--blue);
+      background: #f3f8fc;
+    }
+
+    .registration-form {
+      margin-top: 0;
+    }
+
+    .registration-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .registration-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .registration-actions .button {
+      margin-top: 0;
+    }
+
+    .button.secondary-button {
+      border: 1px solid #cbd5df;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .button.secondary-button:hover {
+      background: #f3f6f8;
+    }
+
+    .registration-message.success {
+      color: var(--green);
+    }
+
+    .security-note {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .candidate-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-bottom: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .candidate-item {
+      min-width: 0;
+      background: #fff;
+      padding: 14px 16px;
+    }
+
+    .candidate-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .candidate-value {
+      display: block;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .quiz-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 18px;
     }
 
     .progress {
-      height: 10px;
-      background: #dfe7ef;
-      border-radius: 999px;
+      height: 9px;
       overflow: hidden;
+      border-radius: 999px;
+      background: #dfe6ec;
     }
 
-    .progress span {
-      display: block;
-      height: 100%;
+    .progress-fill {
       width: 0;
-      background: linear-gradient(90deg, #1167b1, #f2791f);
+      height: 100%;
+      background: var(--orange);
       transition: width 180ms ease;
     }
 
@@ -233,1087 +342,1217 @@
       white-space: nowrap;
     }
 
-    .questions {
+    .exam-layout {
       display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
       gap: 14px;
-      margin-top: 18px;
-    }
-
-    .question {
-      padding: 18px;
-    }
-
-    .qhead {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 12px;
       align-items: start;
     }
 
-    .qno {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      background: #17202a;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 14px;
+    .question-nav-panel {
+      position: sticky;
+      top: 92px;
+      padding: 18px;
     }
 
-    .qtext {
-      font-size: 16px;
-      line-height: 1.45;
+    .question-nav-panel h2 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .question-nav-summary {
+      margin: 6px 0 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .question-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 34px);
+      gap: 8px;
+    }
+
+    .question-nav-button {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #cad5df;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .question-nav-button:hover {
+      border-color: var(--orange);
+      color: #c94f0c;
+    }
+
+    .question-nav-button.answered-question {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .question-nav-legend {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .question-nav-legend span {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border: 1px solid #cad5df;
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .legend-swatch.answered-swatch {
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+
+    .exam-question-column { min-width: 0; }
+
+    .questions {
+      display: grid;
+      gap: 14px;
+    }
+
+    .question-card {
+      padding: 20px;
+      scroll-margin-top: 92px;
+    }
+
+    .question-head {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 13px;
+      align-items: start;
+    }
+
+    .question-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #1d2731;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .question-text {
+      padding-top: 6px;
+      font-size: 15px;
       font-weight: 700;
-      padding-top: 5px;
+      line-height: 1.5;
     }
 
     .options {
       display: grid;
       gap: 9px;
-      margin-top: 14px;
+      margin-top: 16px;
     }
 
     .option {
+      min-height: 54px;
       display: grid;
       grid-template-columns: 20px 34px minmax(0, 1fr);
-      gap: 12px;
+      gap: 11px;
       align-items: center;
-      border: 1px solid var(--line);
+      border: 1px solid #d8e0e7;
       border-radius: 8px;
-      padding: 13px 16px;
-      background: #ffffff;
+      background: #fff;
+      padding: 11px 14px;
       cursor: pointer;
-      min-height: 54px;
     }
 
-    .option:hover { background: #f8fbff; border-color: #b9c9d9; }
-    .option input { margin: 0; width: 17px; height: 17px; }
-    .letter {
+    .option:hover { border-color: #aebdca; background: #f9fbfc; }
+    .option:has(input:checked) { border-color: #6f9fd0; background: #f1f7fc; }
+    .option input { width: 17px; height: 17px; margin: 0; }
+
+    .option-letter {
       width: 30px;
       height: 30px;
-      border-radius: 8px;
       display: grid;
       place-items: center;
-      background: #f1f5f9;
-      color: #334155;
+      border-radius: 7px;
+      background: #eef2f5;
+      color: #394754;
+      font-size: 13px;
       font-weight: 800;
-      font-size: 14px;
       line-height: 1;
     }
 
-    .answer-text {
+    .option:has(input:checked) .option-letter {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .option-text {
       min-width: 0;
-      line-height: 1.35;
-      color: #334155;
-      font-size: 15px;
+      color: #34414d;
+      font-size: 14px;
       font-weight: 600;
+      line-height: 1.45;
       overflow-wrap: anywhere;
     }
 
-    .option:has(input:checked) {
-      border-color: #7aa7ff;
-      background: #f4f8ff;
-    }
-
-    .option:has(input:checked) .letter {
-      background: #477cff;
-      color: #ffffff;
-    }
-
-    .question.correct { border-color: rgba(22, 122, 70, 0.42); }
-    .question.incorrect { border-color: rgba(180, 35, 24, 0.42); }
-    .option.correct { border-color: var(--ok); background: #eef8f2; }
-    .option.incorrect { border-color: var(--bad); background: #fff1ef; }
-
-    .explain {
-      display: none;
-      margin-top: 12px;
-      color: var(--muted);
-      background: #f8fafc;
-      border-left: 4px solid var(--line);
-      padding: 10px 12px;
-      line-height: 1.45;
-      font-size: 14px;
-    }
-
-    .submitted .explain { display: block; }
-
-    .actions {
-      display: none;
+    .submit-bar {
       position: sticky;
       bottom: 0;
-      background: rgba(245, 247, 251, 0.94);
-      backdrop-filter: blur(8px);
-      padding: 14px 0 0;
-      margin-top: 18px;
-      gap: 10px;
+      z-index: 10;
+      display: flex;
       justify-content: flex-end;
-    }
-
-    .result {
-      display: none;
-      padding: 18px;
       margin-top: 18px;
-      border-left: 6px solid var(--brand);
+      padding: 14px 0;
+      background: rgba(244, 246, 248, 0.94);
+      backdrop-filter: blur(8px);
     }
 
-    .score {
-      font-size: 28px;
-      font-weight: 800;
-      margin: 0 0 6px;
+    .result-layout {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
     }
 
-    .result-status {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .history-panel { padding: 18px; }
+    .history-title { margin: 0 0 14px; font-size: 15px; }
+    .history-list { display: grid; gap: 8px; }
+
+    .history-item {
+      border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 7px 12px;
-      margin-left: 8px;
-      font-size: 15px;
+      background: var(--soft);
+      padding: 12px;
+    }
+
+    .history-score { font-size: 13px; font-weight: 800; }
+    .history-time { margin-top: 5px; color: var(--muted); font-size: 11px; }
+    .pass-text { color: var(--green); }
+    .failed-text { color: var(--red); }
+
+    .result-main { display: grid; gap: 14px; }
+    .result-summary { padding: 24px; }
+
+    .result-user {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .result-user strong { color: var(--ink); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+
+    .metric {
+      min-width: 0;
+      padding: 0 22px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:first-child { padding-left: 0; }
+    .metric:last-child { padding-right: 0; border-right: 0; }
+    .metric-label { color: var(--muted); font-size: 12px; }
+    .metric-value { margin-top: 7px; font-size: 25px; font-weight: 700; }
+    .metric-value small { font-size: 13px; font-weight: 600; }
+
+    .analysis-panel {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 34px;
+      align-items: center;
+      padding: 26px;
+    }
+
+    .score-ring {
+      --score: 0%;
+      width: 174px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: conic-gradient(var(--orange) var(--score), #edf0f2 0);
+      position: relative;
+    }
+
+    .score-ring::after {
+      content: "";
+      position: absolute;
+      width: 142px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .score-ring-copy {
+      z-index: 1;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .score-ring-copy strong {
+      display: block;
+      margin-top: 6px;
+      color: #45515c;
+      font-size: 31px;
+    }
+
+    .analysis-copy h3 { margin: 0 0 10px; font-size: 18px; }
+    .analysis-copy p { margin: 6px 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .analysis-copy .result-callout { color: var(--ink); font-size: 16px; font-weight: 800; }
+
+    .wrong-review-panel { padding: 24px; }
+    .wrong-review-panel h3 { margin: 0; font-size: 18px; }
+    .wrong-review-intro { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+    .wrong-review-list { margin-top: 18px; border-top: 1px solid var(--line); }
+
+    .wrong-review-item {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wrong-review-number {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 6px;
+      background: #fff0e7;
+      color: #c94f0c;
       font-weight: 800;
-      vertical-align: middle;
     }
 
-    .result-status.pass {
-      background: #eef8f2;
-      color: var(--ok);
-      border: 1px solid rgba(22, 122, 70, 0.3);
+    .wrong-review-question { color: var(--ink); font-size: 14px; font-weight: 700; line-height: 1.5; }
+    .wrong-review-answer { margin-top: 7px; color: var(--red); font-size: 13px; line-height: 1.5; }
+
+    .result-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 4px 0 20px;
     }
 
-    .result-status.failed {
-      background: #fff1ef;
-      color: var(--bad);
-      border: 1px solid rgba(180, 35, 24, 0.3);
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 50;
+      width: 44px;
+      height: 44px;
+      border: 1px solid #cbd5df;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 8px 24px rgba(17, 26, 35, 0.16);
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
     }
 
-    .result p { margin: 6px 0 0; color: var(--muted); }
+    .back-to-top:hover {
+      border-color: var(--orange);
+      color: #c94f0c;
+    }
 
-    @media (max-width: 720px) {
-      .topbar, .setup, .quizbar {
+    .tab-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(17, 26, 35, 0.76);
+    }
+
+    .tab-dialog {
+      width: min(460px, 100%);
+      border-radius: 8px;
+      background: #fff;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .tab-dialog h2 { font-size: 21px; }
+    .tab-countdown { margin: 16px 0 0; color: var(--red); font-size: 34px; font-weight: 800; }
+
+    @media (max-width: 850px) {
+      .brand-logo { width: 122px; }
+      h1 { font-size: 15px; }
+      .candidate-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .exam-layout { grid-template-columns: 1fr; }
+      .question-nav-panel { position: static; }
+      .question-nav-grid { grid-template-columns: repeat(auto-fit, minmax(34px, 1fr)); }
+      .question-nav-button { width: 100%; }
+      .result-layout { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; }
+      .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(3) { padding-left: 0; }
+      .analysis-panel { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    @media (max-width: 620px) {
+      .header-inner {
+        width: min(100% - 24px, 1180px);
         grid-template-columns: 1fr;
+        gap: 10px;
       }
 
-      .field-grid {
-        grid-template-columns: 1fr;
+      .brand { align-items: flex-start; gap: 12px; }
+      .brand-logo { width: 98px; margin-top: 3px; }
+      .brand-copy { padding-left: 12px; }
+      .timer { width: 100%; }
+      main { width: min(100% - 24px, 1180px); padding-top: 18px; }
+      .login-panel { margin-top: 20px; padding: 24px 18px; }
+      h2 { font-size: 21px; }
+      .candidate-bar { grid-template-columns: 1fr; }
+      .quiz-toolbar { grid-template-columns: 1fr; }
+      .question-card { padding: 16px 13px; }
+      .question-head { grid-template-columns: 34px minmax(0, 1fr); gap: 10px; }
+      .question-number { width: 34px; height: 34px; }
+      .option { grid-template-columns: 18px 30px minmax(0, 1fr); padding: 10px; gap: 8px; }
+      .option-letter { width: 28px; height: 28px; }
+      .metrics { grid-template-columns: 1fr; gap: 0; }
+      .metric, .metric:first-child, .metric:nth-child(3) {
+        padding: 14px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
       }
-
-      .timer {
-        justify-content: flex-start;
-        width: 100%;
-      }
-
-      .setup button, .actions button {
-        width: 100%;
-      }
-
-      .actions {
-        grid-template-columns: 1fr;
-      }
+      .metric:last-child { border-bottom: 0; }
+      .analysis-panel { padding: 22px 16px; }
+      .wrong-review-panel { padding: 22px 16px; }
+      .result-actions .button { width: 100%; }
+      .back-to-top { right: 14px; bottom: 14px; }
+      .submit-bar .button { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="topbar">
-      <div class="title">
-        <div class="mark" aria-hidden="true"></div>
-        <div>
-          <h1>Bài kiểm tra MGRL Series B0</h1>
-          <div class="sub">Product Training on MGRL - Sungrow</div>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <img
+          class="brand-logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Sungrow_Power_Supply.svg"
+          alt="Sungrow"
+        >
+        <div class="brand-copy">
+          <h1>BÀI ĐÁNH GIÁ KIẾN THỨC SẢN PHẨM HYBRID INVERTER MGRL 2026</h1>
         </div>
       </div>
-      <div id="timer" class="timer">60:00</div>
+      <div id="timer" class="timer" hidden>
+        <span class="timer-dot" aria-hidden="true"></span>
+        <span id="timerText">60:00</span>
+      </div>
     </div>
   </header>
 
   <main>
-    <section id="setup" class="setup">
-      <div>
-        <div class="field-grid">
-          <div>
-            <label for="studentName">Người làm bài</label>
-            <input id="studentName" type="text" placeholder="Nhập họ tên" required>
-          </div>
-          <div>
-            <label for="companyName">Công ty</label>
-            <input id="companyName" type="text" placeholder="Nhập tên công ty" required>
-          </div>
-          <div>
-            <label for="contactInfo">Email/SĐT</label>
-            <input id="contactInfo" type="text" placeholder="Nhập email hoặc số điện thoại" required>
-          </div>
-        </div>
-        <div class="meta">
-          <span class="pill">30 câu mỗi lượt</span>
-          <span class="pill">Ngân hàng 100 câu</span>
-          <span class="pill">Thời gian 60 phút</span>
-          <span class="pill">Xáo trộn câu hỏi và đáp án</span>
-        </div>
+    <section id="loginView" class="panel login-panel">
+      <div id="loginContent">
+        <p class="eyebrow">Xác thực người tham gia</p>
+        <h2>Đăng nhập bằng email đã đăng ký</h2>
+        <form id="loginForm" novalidate>
+          <label for="emailInput">Email</label>
+          <input id="emailInput" type="email" autocomplete="email" placeholder="ten@congty.com" required>
+          <button id="loginButton" class="button" type="submit">Đăng nhập và bắt đầu</button>
+          <button id="registrationToggleButton" class="registration-link" type="button">Chưa đăng ký? Đăng ký tham gia</button>
+          <p id="loginMessage" class="login-message" role="alert"></p>
+        </form>
       </div>
-      <button id="startBtn" type="button">Bắt đầu</button>
+
+      <form id="registrationForm" class="registration-form" novalidate hidden>
+        <p class="eyebrow">Đăng ký người tham gia</p>
+        <h2>Gửi thông tin đăng ký</h2>
+        <p class="intro">Thông tin sẽ được lưu vào Google Sheet. Quản trị viên sẽ phê duyệt quyền tham gia và số lượt thi.</p>
+        <div class="registration-grid">
+          <div>
+            <label for="registrationName">Họ và tên</label>
+            <input id="registrationName" type="text" autocomplete="name" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div>
+            <label for="registrationCompany">Tên công ty</label>
+            <input id="registrationCompany" type="text" autocomplete="organization" placeholder="Công ty ABC" required>
+          </div>
+          <div>
+            <label for="registrationEmail">Email đăng ký</label>
+            <input id="registrationEmail" type="email" autocomplete="email" placeholder="ten@congty.com" required>
+          </div>
+          <div class="registration-actions">
+            <button id="registrationBackButton" class="button secondary-button" type="button">Quay lại</button>
+            <button id="registrationSubmitButton" class="button" type="submit">Gửi đăng ký</button>
+          </div>
+        </div>
+        <p id="registrationMessage" class="login-message registration-message" role="alert"></p>
+      </form>
+      <div class="security-note">Mỗi email và mỗi thiết bị được tham gia tối đa 3 lần. Khi rời tab, chuyển sang ứng dụng khác quá 60 giây hoặc tải lại trang, bài thi sẽ tự động kết thúc.</div>
     </section>
 
-    <section id="result" class="result" aria-live="polite"></section>
+    <section id="examView" hidden>
+      <div id="candidateBar" class="candidate-bar" aria-label="Thông tin người làm bài"></div>
+      <div class="quiz-toolbar">
+        <div class="progress" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
+        <div id="answeredCount" class="answered">0/40 đã chọn</div>
+      </div>
+      <div class="exam-layout">
+        <aside class="panel question-nav-panel" aria-label="Điều hướng câu hỏi">
+          <h2>Tiến độ bài làm</h2>
+          <p id="questionNavSummary" class="question-nav-summary">0/40 câu đã chọn</p>
+          <div id="questionNavGrid" class="question-nav-grid"></div>
+          <div class="question-nav-legend">
+            <span><i class="legend-swatch answered-swatch" aria-hidden="true"></i>Đã chọn đáp án</span>
+            <span><i class="legend-swatch" aria-hidden="true"></i>Chưa chọn đáp án</span>
+          </div>
+        </aside>
+        <div class="exam-question-column">
+          <form id="quizForm" class="questions"></form>
+          <div class="submit-bar">
+            <button id="submitButton" class="button" type="button">Nộp bài</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div id="quizbar" class="quizbar">
-      <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
-      <div id="answered" class="answered">0/30 đã chọn</div>
-    </div>
-
-    <form id="quiz" class="questions"></form>
-
-    <div id="actions" class="actions">
-      <button id="submitBtn" type="button">Nộp bài</button>
-      <button id="restartBtn" class="secondary" type="button">Làm đề khác</button>
-    </div>
+    <section id="resultView" hidden aria-live="polite"></section>
   </main>
 
+  <div id="tabOverlay" class="tab-overlay" hidden>
+    <div class="tab-dialog">
+      <p class="eyebrow">Cảnh báo rời bài thi</p>
+      <h2>Vui lòng quay lại bài kiểm tra</h2>
+      <p class="intro">Bài sẽ tự động kết thúc nếu bạn rời tab hoặc chuyển sang ứng dụng khác quá 60 giây.</p>
+      <div id="tabCountdown" class="tab-countdown">60</div>
+    </div>
+  </div>
+
+  <button id="backToTopButton" class="back-to-top" type="button" title="Trở về đầu trang" aria-label="Trở về đầu trang" hidden>↑</button>
+
   <script>
-    const QUESTION_COUNT = 30;
-    const DURATION_SECONDS = 60 * 60;
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyGkll_TPXG0ZkKNectnpynYF4-ziKb4c2igRkfuWSifcZWOXp2A_BW_AJiuE4FaSJ5aw/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzh0vDk-fN86u1_g3wm7ti7MpDTQWIGZjqx-XqVLfuRvR_piNAQ1waysZtEW8_AMWyWNQ/exec";
+    const ACTIVE_SESSION_KEY = "mgrl_active_attempt_v2";
+    const TAB_GRACE_SECONDS = 60;
+    let registrationRedirectTimer = null;
 
-    const questionBank = [
-      {
-        q: "Điện áp đầu vào PV tối đa của các model MG5RL đến MG12RL là bao nhiêu?",
-        options: ["500 V", "450 V", "550 V", "600 V"],
-        answer: 0,
-        explain: "Bảng thông số kỹ thuật chính nêu điện áp đầu vào PV tối đa là 500 V."
-      },
-      {
-        q: "Điện áp đầu vào tối thiểu và điện áp khởi động của PV được nêu như thế nào?",
-        options: ["40 V / 50 V", "50 V / 60 V", "35 V / 45 V", "45 V / 55 V"],
-        answer: 0,
-        explain: "Thông số trong slide ghi điện áp đầu vào PV tối thiểu / điện áp khởi động = 40 V / 50 V."
-      },
-      {
-        q: "Điện áp đầu vào PV định mức của dòng MGRL là bao nhiêu?",
-        options: ["360 V", "320 V", "380 V", "400 V"],
-        answer: 0,
-        explain: "Điện áp đầu vào PV định mức trong bảng thông số là 360 V."
-      },
-      {
-        q: "Dải điện áp hoạt động MPPT của dòng MGRL là dải nào?",
-        options: ["40 V - 425 V", "50 V - 450 V", "60 V - 500 V", "80 V - 425 V"],
-        answer: 0,
-        explain: "Dải điện áp hoạt động MPPT được ghi là 40 V - 425 V."
-      },
-      {
-        q: "Nhóm MG8RL/MG10RL/MG12RL có bao nhiêu bộ MPPT độc lập?",
-        options: ["3 MPPT", "2 MPPT", "4 MPPT", "1 MPPT"],
-        answer: 0,
-        explain: "Bảng thông số thể hiện MG8RL/MG10RL/MG12RL có 3 bộ theo dõi điểm công suất cực đại độc lập."
-      },
-      {
-        q: "Số chuỗi PV trên mỗi MPPT của nhóm MG8RL/MG10RL/MG12RL được ghi như thế nào?",
-        options: ["1 / 1 / 1", "2 / 1 / 1", "1 / 2 / 1", "2 / 2 / 1"],
-        answer: 0,
-        explain: "Số chuỗi PV trên mỗi MPPT của nhóm 3 MPPT là 1 / 1 / 1."
-      },
-      {
-        q: "Dòng đầu vào PV tối đa của MG5RL/MG6RL là bao nhiêu?",
-        options: ["40 A (20 A / 20 A)", "50 A (25 A / 25 A)", "60 A (30 A / 30 A)", "45 A (20 A / 25 A)"],
-        answer: 0,
-        explain: "MG5RL/MG6RL có dòng đầu vào PV tối đa 40 A, chia 20 A / 20 A."
-      },
-      {
-        q: "Dòng ngắn mạch DC tối đa của nhóm MG8RL/MG10RL/MG12RL là bao nhiêu?",
-        options: ["75 A (25 A / 25 A / 25 A)", "60 A (20 A / 20 A / 20 A)", "90 A (30 A / 30 A / 30 A)", "72 A (24 A / 24 A / 24 A)"],
-        answer: 0,
-        explain: "Dòng ngắn mạch DC tối đa cho nhóm 3 MPPT là 75 A, mỗi nhánh 25 A."
-      },
-      {
-        q: "Dải điện áp Pin của các model MGRL là dải nào?",
-        options: ["40 V - 60 V", "36 V - 60 V", "48 V - 72 V", "50 V - 80 V"],
-        answer: 0,
-        explain: "Dải điện áp Pin trong tài liệu là 40 V - 60 V."
-      },
-      {
-        q: "Dòng sạc/xả tối đa của MG10RL là bao nhiêu?",
-        options: ["220 A / 220 A", "190 A / 190 A", "240 A / 240 A", "200 A / 200 A"],
-        answer: 0,
-        explain: "Bảng dữ liệu pin ghi MG10RL có dòng sạc/xả tối đa = 220 A / 220 A."
-      },
-      {
-        q: "Công suất sạc/xả tối đa của MG12RL là bao nhiêu?",
-        options: ["12000 W / 12000 W", "10000 W / 10000 W", "11000 W / 11000 W", "13860 W / 13860 W"],
-        answer: 0,
-        explain: "MG12RL có công suất sạc/xả tối đa = 12000 W / 12000 W."
-      },
-      {
-        q: "Công suất đầu ra AC định mức của MG8RL là bao nhiêu?",
-        options: ["8000 W", "6000 W", "10000 W", "12000 W"],
-        answer: 0,
-        explain: "Công suất đầu ra AC định mức của MG8RL là 8000 W."
-      },
-      {
-        q: "Dòng đầu ra AC tối đa của MG12RL là bao nhiêu?",
-        options: ["54.5 A", "45.5 A", "50.0 A", "63.0 A"],
-        answer: 0,
-        explain: "Dòng đầu ra AC tối đa của MG12RL được ghi là 54.5 A."
-      },
-      {
-        q: "Dải điện áp AC của dòng MGRL là dải nào?",
-        options: ["154 V - 276 V", "176 V - 264 V", "187 V - 264 V", "180 V - 276 V"],
-        answer: 0,
-        explain: "Dải điện áp AC trong bảng thông số là 154 V - 276 V."
-      },
-      {
-        q: "Dải tần số lưới được ghi trong bảng thông số là lựa chọn nào?",
-        options: ["45 Hz - 55 Hz / 55 Hz - 65 Hz", "47 Hz - 53 Hz / 57 Hz - 63 Hz", "45 Hz - 60 Hz / 50 Hz - 65 Hz", "50 Hz - 55 Hz / 60 Hz - 65 Hz"],
-        answer: 0,
-        explain: "Dải tần số lưới là 45 Hz - 55 Hz / 55 Hz - 65 Hz."
-      },
-      {
-        q: "Giá trị THD ở công suất định mức của phần AC được nêu là bao nhiêu?",
-        options: ["< 3%", "< 2%", "< 4%", "< 5%"],
-        answer: 0,
-        explain: "Độ méo hài tổng (THD) được ghi là < 3% tại công suất định mức."
-      },
-      {
-        q: "Ở chế độ dự phòng khi có lưới, dòng đầu ra tối đa cho tải dự phòng của nhóm MG8RL/MG10RL/MG12RL là bao nhiêu?",
-        options: ["63 A", "40 A", "54.5 A", "75 A"],
-        answer: 0,
-        explain: "Dữ liệu dự phòng ở chế độ có lưới ghi dòng đầu ra tối đa cho tải dự phòng là 63 A cho nhóm công suất lớn."
-      },
-      {
-        q: "Thời gian chuyển sang chế độ dự phòng được ghi trong thông số là bao nhiêu?",
-        options: ["<= 4 ms", "<= 10 ms", "<= 20 ms", "<= 40 ms"],
-        answer: 0,
-        explain: "Thời gian chuyển sang chế độ dự phòng trong bảng là <= 4 ms."
-      },
-      {
-        q: "Cấp bảo vệ vỏ máy của dòng MGRL là cấp nào?",
-        options: ["IP65", "IP54", "IP66", "IP20"],
-        answer: 0,
-        explain: "Dữ liệu chung ghi cấp bảo vệ là IP65."
-      },
-      {
-        q: "Phương pháp làm mát của MG5RL/MG6RL được nêu là gì?",
-        options: ["Đối lưu tự nhiên", "Quạt làm mát", "Làm mát bằng chất lỏng", "Quạt và nước kết hợp"],
-        answer: 0,
-        explain: "Phương pháp làm mát cho nhóm công suất nhỏ là đối lưu tự nhiên."
-      },
-      {
-        q: "Các giao tiếp truyền thông nào được liệt kê cho dòng MGRL?",
-        options: ["CAN, RS485, Ethernet, WLAN", "CAN, RS232, Ethernet, Bluetooth", "RS485, USB, WLAN, Zigbee", "CAN, RS485, 4G, PLC"],
-        answer: 0,
-        explain: "Mục giao tiếp trong dữ liệu chung ghi CAN, RS485, Ethernet, WLAN."
-      },
-      {
-        q: "Cổng đa chức năng có trạng thái mặc định nào khi không cấu hình thiết bị?",
-        options: ["Không kết nối", "Kết nối máy phát diesel", "Kết nối tải phân cấp", "Kết nối Inverter hòa lưới"],
-        answer: 0,
-        explain: "Phần chế độ cổng đa chức năng có tùy chọn 1 là không kết nối, áp dụng khi không có thiết bị nào nối vào cổng này."
-      },
-      {
-        q: "CT tiêu chuẩn đi kèm có chiều dài bao nhiêu?",
-        options: ["5 m", "3 m", "10 m", "15 m"],
-        answer: 0,
-        explain: "Phần giải pháp ứng dụng hệ thống ghi CT tiêu chuẩn dài 5 m."
-      },
-      {
-        q: "Với hệ retrofit PV bên thứ ba, tài liệu yêu cầu dùng thiết bị nào?",
-        options: ["Công tơ thông minh hai kênh DTSU666-20 và CT ngoài dạng điện áp", "Công tơ S100 và CT dạng dòng điện", "WiNet-S2 và CT 50A/50mA", "DTSU666-20 một kênh và CT dạng dòng điện"],
-        answer: 0,
-        explain: "Trang cải tạo cổng kết nối lưới yêu cầu công tơ thông minh hai kênh DTSU666-20 của SUNGROW và CT ngoài dạng điện áp."
-      },
-      {
-        q: "Số lượng máy tối đa trong hệ nhiều máy thuần độc lập lưới là bao nhiêu?",
-        options: ["4 máy", "3 máy", "5 máy", "8 máy"],
-        answer: 0,
-        explain: "Tiêu đề slide ghi hệ nhiều máy thuần độc lập lưới có tối đa 4 máy."
-      },
-      {
-        q: "Nếu số inverter song song từ 5 máy trở lên thì cần làm gì?",
-        options: ["Liên hệ bộ phận hỗ trợ kỹ thuật Sungrow", "Đặt tất cả về chế độ máy phụ", "Tắt CT và công tơ", "Chỉ dùng kết nối Wi-Fi"],
-        answer: 0,
-        explain: "Các slide hệ nhiều máy ghi nếu số inverter song song từ 5 máy trở lên thì cần liên hệ bộ phận hỗ trợ kỹ thuật Sungrow."
-      },
-      {
-        q: "Trong hệ một máy độc lập lưới, phía PV được yêu cầu như thế nào?",
-        options: ["Bắt buộc kết nối tấm PV", "Có thể bỏ qua tấm PV", "Phía PV phải để hở hoàn toàn", "PV chỉ được kết nối khi có Pin"],
-        answer: 0,
-        explain: "Slide hệ một máy độc lập lưới ghi phía PV bắt buộc phải kết nối tấm PV."
-      },
-      {
-        q: "Cấu hình pin axit-chì chỉ được hỗ trợ trong trường hợp nào?",
-        options: ["Chỉ hệ một máy MG5-12RL", "Mọi hệ nhiều inverter", "Chỉ MG8/10/12RL song song", "Tất cả hệ có trên 2 inverter"],
-        answer: 0,
-        explain: "Slide pin axit-chì ghi chỉ hệ một máy MG5-12RL hỗ trợ cấu hình pin axit-chì."
-      },
-      {
-        q: "Cảm biến nhiệt độ khuyến nghị cho pin axit-chì là model nào?",
-        options: ["PT100", "PT1000", "NTC10K", "KTY84"],
-        answer: 0,
-        explain: "Tài liệu khuyến nghị dùng cảm biến nhiệt độ PT100."
-      },
-      {
-        q: "Số lượng MBL160 tối đa có thể kết nối song song là bao nhiêu?",
-        options: ["20 bộ", "12 bộ", "16 bộ", "24 bộ"],
-        answer: 0,
-        explain: "Các slide MBL160 ghi có thể kết nối song song tối đa 20 bộ."
-      },
-      {
-        q: "Với 4*MG5/6RL + MBL160 hoặc pin lithium bên thứ ba, CB DC được nêu tối thiểu bao nhiêu?",
-        options: [">=150 A / 100 V", ">=100 A / 100 V", ">=200 A / 100 V", ">=250 A / 100 V"],
-        answer: 0,
-        explain: "Slide 4*MG5/6RL ghi yêu cầu >=150 A/100 V."
-      },
-      {
-        q: "Với 4*MG8/10/12RL + MBL160 hoặc pin lithium bên thứ ba, CB DC được nêu tối thiểu bao nhiêu?",
-        options: [">=250 A / 100 V", ">=150 A / 100 V", ">=200 A / 100 V", ">=300 A / 100 V"],
-        answer: 0,
-        explain: "Slide 4*MG8/10/12RL ghi yêu cầu >=250 A/100 V."
-      },
-      {
-        q: "Tính năng kết nối tải qua cổng đa chức năng yêu cầu WiNet-S2 tối thiểu phiên bản nào?",
-        options: ["WINET-SV300.001.03.P029B001 trở lên", "WINET-SV300.001.03.P022 trở lên", "WINET-SV300.001.03.P026B002 trở lên", "WINET-SV300.001.03.P030 trở lên"],
-        answer: 0,
-        explain: "Trang tính năng/kịch bản mới ghi kết nối tải qua cổng đa chức năng cần WiNet-S2 P029B001 trở lên."
-      },
-      {
-        q: "Mục đích chính của việc chừa khoảng trống xung quanh inverter khi lắp đặt là gì?",
-        options: ["Thông gió và tản nhiệt", "Tăng tín hiệu Wi-Fi", "Tăng điện áp PV", "Giảm yêu cầu tiếp địa"],
-        answer: 0,
-        explain: "Slide Installation Space ghi cần đủ khoảng trống để ventilation and heat dissipation."
-      },
-      {
-        q: "Cổng COM1 trên vùng đấu nối được mô tả dùng để kết nối với thiết bị nào?",
-        options: ["Mô-đun truyền thông WiNet-S2", "Cáp nguồn pin", "Đầu nối dương PV", "Nắp bảo vệ AC"],
-        answer: 0,
-        explain: "COM1 là cổng phụ kiện truyền thông để kết nối mô-đun truyền thông WiNet-S2."
-      },
-      {
-        q: "Cổng COM2 hỗ trợ các kết nối truyền thông nào?",
-        options: ["RSD, CT, công tơ, RS-485/CAN, DRM, DO", "PV+, PV-, BAT+, BAT-, GRID, GEN", "Chỉ WiNet-S2, WLAN, Ethernet", "Dự phòng, GEN, GRID, PE, N, L"],
-        answer: 0,
-        explain: "COM2 được mô tả là cổng truyền thông cho RSD, CT, công tơ, RS-485/CAN, DRM và DO."
-      },
-      {
-        q: "Để đáp ứng yêu cầu chống nhiễu, cáp Ethernet nào được khuyến nghị?",
-        options: ["Cáp mạng chống nhiễu CAT 5E hoặc CAT 6", "Cáp CAT 3 không chống nhiễu", "Cáp USB-C chống nhiễu", "Cáp đồng trục RG6"],
-        answer: 0,
-        explain: "Electrical Connection Overview ghi shielded Ethernet cables là bắt buộc, khuyến nghị CAT 5E hoặc CAT 6."
-      },
-      {
-        q: "Với AC Connection của MG8/10/12RL, thứ tự đấu nối cáp được nêu là gì?",
-        options: ["DỰ PHÒNG, GEN, rồi LƯỚI", "LƯỚI, GEN, rồi DỰ PHÒNG", "GEN, LƯỚI, rồi DỰ PHÒNG", "DỰ PHÒNG, LƯỚI, rồi GEN"],
-        answer: 0,
-        explain: "Slide đấu nối AC của MG8/10/12RL ghi thứ tự đấu cáp là DỰ PHÒNG, GEN, rồi LƯỚI."
-      },
-      {
-        q: "Điều kiện điện áp hở mạch của mỗi chuỗi PV cần thỏa mãn là gì?",
-        options: ["Voc <= Vbat x 9", "Voc <= Vbat x 6", "Voc <= Vbat x 12", "Voc <= Vbat x 15"],
-        answer: 0,
-        explain: "PV Connection ghi Voc phải thỏa mãn Voc <= Vbat x 9."
-      },
-      {
-        q: "Chiều dài cáp nguồn pin được khuyến nghị là bao nhiêu?",
-        options: ["Nhỏ hơn 10 m", "Nhỏ hơn 5 m", "Nhỏ hơn 15 m", "Nhỏ hơn 20 m"],
-        answer: 0,
-        explain: "Phần đấu nối pin ghi chiều dài cáp nguồn pin được khuyến nghị nhỏ hơn 10 m."
-      },
-      {
-        q: "Nếu khoảng cách giữa inverter và CT vượt quá 5 m, giải pháp khuyến nghị là gì?",
-        options: ["Dùng DTSU666-20 kèm CT ngoài 100A/333mV", "Nối dài cáp CT bằng mọi cách", "Đổi sang CT 63A/50mA", "Bỏ qua CT và chỉ dùng Wi-Fi"],
-        answer: 0,
-        explain: "Slide đấu nối CT dạng dòng điện khuyến nghị dùng DTSU666-20 kèm CT ngoài 100A/333mV và không khuyến nghị nối dài cáp CT."
-      },
-      {
-        q: "Dải điện áp đầu ra máy phát được tài liệu nêu là bao nhiêu?",
-        options: ["187 V - 264 V", "154 V - 276 V", "176 V - 253 V", "200 V - 240 V"],
-        answer: 0,
-        explain: "Phần đấu nối DO của máy phát ghi dải điện áp đầu ra máy phát là 187 V - 264 V."
-      },
-      {
-        q: "Trước khi chạy thử, trạng thái công tắc DC và CB AC cần như thế nào?",
-        options: ["Ở vị trí OFF", "Ở vị trí ON", "DC ON và AC OFF", "DC OFF và AC ON"],
-        answer: 0,
-        explain: "Phần kiểm tra trước khi chạy thử ghi công tắc DC và CB AC phải ở vị trí OFF."
-      },
-      {
-        q: "LCD initialization sẽ kích hoạt trong hai trường hợp nào?",
-        options: ["Lần đầu inverter được cấp nguồn hoặc sau khôi phục cài đặt gốc", "Mỗi khi WiNet-S2 mất kết nối hoặc đổi mật khẩu", "Khi CT bị ngược chiều hoặc công tơ mất RS485", "Khi pin đầy hoặc PV không có điện"],
-        answer: 0,
-        explain: "LCD Initial Setup ghi initialization kích hoạt sau lần cấp nguồn đầu tiên và sau factory reset."
-      },
-      {
-        q: "CT mặc định trong mục Set grid settings có rating nào?",
-        options: ["100A/50mA", "100A/333mV", "250A/333mV", "63A/50mA"],
-        answer: 0,
-        explain: "Tùy chọn chọn CT mặc định ghi CT tiêu chuẩn đi kèm có rating 100A/50mA."
-      },
-      {
-        q: "Mật khẩu User và Installer mặc định trong More Settings lần lượt là gì?",
-        options: ["2025 và 1997", "1997 và 2025", "2024 và 1998", "2025 và 2001"],
-        answer: 0,
-        explain: "More Settings ghi User Password: 2025 và Installer Password: 1997."
-      },
-      {
-        q: "Giá trị mặc định của điện áp đầu ra tối thiểu khi vận hành độc lập lưới là bao nhiêu?",
-        options: ["80%", "60%", "70%", "100%"],
-        answer: 0,
-        explain: "Trang cấu hình điện áp độc lập lưới ghi mặc định 80%, dải điều chỉnh 40%~100%."
-      },
-      {
-        q: "Sau khi inverter được tắt nguồn, cần đợi tối thiểu bao lâu trước khi thao tác bên trong sau khi xác minh phần mang điện?",
-        options: ["10 phút", "5 phút", "15 phút", "20 phút"],
-        answer: 0,
-        explain: "Nguyên tắc vận hành an toàn và quy trình tắt nguồn đều nêu cần đợi ít nhất 10 phút."
-      },
-      {
-        q: "Lỗi 106 về cáp nối đất được kích hoạt khi điện áp giữa N và vỏ máy vượt ngưỡng nào?",
-        options: ["30 V", "20 V", "40 V", "50 V"],
-        answer: 0,
-        explain: "Trang lỗi 106 ghi nếu điện áp giữa dây N và vỏ máy lớn hơn giá trị bảo vệ 30 V thì báo lỗi."
-      },
-      {
-        q: "Lỗi 714 về truyền thông BMS xảy ra trong điều kiện nào?",
-        options: ["Cấu hình pin lithium nhưng không phát hiện tín hiệu BMS", "Tổng tải độc lập lưới vượt công suất hiện có", "Cáp lưới đấu nhầm vào cổng dự phòng", "Rơ-le tự kiểm tra có điện áp bất thường"],
-        answer: 0,
-        explain: "Lỗi 714 được mô tả là khi đặt chế độ kết nối pin lithium nhưng không phát hiện tín hiệu truyền thông BMS."
-      },
-      {
-        q: "Trên giao diện LCD, nút ESC có chức năng chính nào?",
-        options: ["Quay lại menu trước đó", "Chuyển sang trang trước", "Xác nhận tham số", "Khởi động lại inverter"],
-        answer: 0,
-        explain: "Phần Appearance ghi ESC: Return to previous menu."
-      },
-      {
-        q: "Trên giao diện LCD, nút ENTER được dùng để làm gì?",
-        options: ["Xác nhận tham số", "Quay lại menu trước đó", "Chuyển sang trang tiếp theo", "Tắt màn hình LCD"],
-        answer: 0,
-        explain: "Phần giao diện thiết bị ghi ENTER dùng để xác nhận tham số."
-      },
-      {
-        q: "Trong hệ một máy có lưới/độc lập lưới, phía PV có thể vận hành trong trạng thái nào?",
-        options: ["Có thể vận hành khi không kết nối tấm PV", "Bắt buộc phải kết nối tấm PV", "Chỉ vận hành khi có máy phát diesel", "Chỉ vận hành khi có công tơ DTSU666-20"],
-        answer: 0,
-        explain: "Slide hệ một máy có lưới/độc lập lưới ghi phía PV hỗ trợ vận hành khi không kết nối tấm PV."
-      },
-      {
-        q: "Trong các kịch bản một máy có lưới/độc lập lưới, cổng đa chức năng có thể kết nối với gì?",
-        options: ["Tải, máy phát hoặc để hở", "Chỉ kết nối với chuỗi PV", "Chỉ kết nối với CT", "Chỉ kết nối với WiNet-S2"],
-        answer: 0,
-        explain: "Cổng đa chức năng được mô tả có thể kết nối tải, máy phát hoặc để hở."
-      },
-      {
-        q: "Trong kịch bản dự phòng toàn nhà, khi không dùng máy phát, tải được kết nối như thế nào?",
-        options: ["Tất cả tải nối vào cổng độc lập lưới hoặc cổng đa chức năng", "Tất cả tải nối trực tiếp vào cổng PV", "Chỉ tải ưu tiên nối vào COM2", "Tải nối vào CT và công tơ"],
-        answer: 0,
-        explain: "Slide dự phòng toàn nhà ghi khi không kết nối máy phát, tất cả tải phải nối vào cổng độc lập lưới hoặc cổng đa chức năng."
-      },
-      {
-        q: "Trong kịch bản cải tạo cổng kết nối lưới, inverter hybrid có thể giới hạn công suất phát lên lưới của thiết bị nào?",
-        options: ["Chỉ kiểm soát công suất phát lên lưới của chính nó", "Giới hạn toàn bộ công suất phát lên lưới của mọi PV inverter cũ", "Chỉ giới hạn công suất phát lên lưới của máy phát diesel", "Không kiểm soát bất kỳ công suất phát lên lưới nào"],
-        answer: 0,
-        explain: "Tài liệu ghi inverter hybrid chỉ kiểm soát công suất phát lên lưới của chính nó và không thể giới hạn công suất phát lên lưới của PV inverter hiện hữu."
-      },
-      {
-        q: "Với hệ cải tạo PV SUNGROW, khi tạo plant trên iSolarCloud cần lưu ý gì?",
-        options: ["Inverter hybrid và PV inverter phải nằm trong cùng một plant", "Inverter hybrid và PV inverter phải nằm ở hai plant khác nhau", "Chỉ cần tạo plant cho inverter hybrid", "Không được đưa PV inverter vào iSolarCloud"],
-        answer: 0,
-        explain: "Slide retrofit ghi hybrid inverter and PV inverter must be within the same plant."
-      },
-      {
-        q: "Trong hệ nhiều máy có lưới/độc lập lưới, máy chính cần kết nối với thiết bị đo nào?",
-        options: ["CT hoặc công tơ điện", "WiNet-S2 thứ hai", "Máy phát diesel bắt buộc", "Chuỗi PV riêng biệt"],
-        answer: 0,
-        explain: "Tài liệu ghi máy chính phải được kết nối với CT hoặc công tơ điện."
-      },
-      {
-        q: "Trong hệ nhiều máy có lưới/độc lập lưới, giao tiếp song song giữa các inverter là gì?",
-        options: ["CAN + 485", "Wi-Fi + Bluetooth", "Ethernet + USB", "DRM + DO"],
-        answer: 0,
-        explain: "Slide hệ nhiều máy ghi giao tiếp song song là CAN + 485."
-      },
-      {
-        q: "Trong hệ nhiều máy, pin được yêu cầu kết nối theo kiểu nào?",
-        options: ["Chỉ hỗ trợ kết nối song song qua thanh cái", "Mỗi inverter bắt buộc dùng một bộ pin độc lập", "Kết nối nối tiếp qua COM1", "Kết nối trực tiếp vào đầu nối AC"],
-        answer: 0,
-        explain: "Tài liệu ghi pin chỉ hỗ trợ kết nối song song và liên kết với các bộ pin qua thanh cái."
-      },
-      {
-        q: "Trong hệ nhiều máy có lưới/độc lập lưới, máy phát diesel được hỗ trợ như thế nào?",
-        options: ["Không được hỗ trợ", "Bắt buộc phải kết nối", "Chỉ hỗ trợ với MG5RL", "Chỉ hỗ trợ khi không có CT"],
-        answer: 0,
-        explain: "Slide hệ nhiều máy có lưới/độc lập lưới ghi không hỗ trợ kết nối máy phát diesel."
-      },
-      {
-        q: "Khi tất cả tải nối vào cổng độc lập lưới trong kịch bản nhiều máy, tài liệu khuyến nghị lắp thêm gì?",
-        options: ["Công tắc chuyển nguồn thủ công", "Bộ sạc AC độc lập", "Bộ tối ưu PV", "Cầu chì trên COM1"],
-        answer: 0,
-        explain: "Slide tất cả tải nối vào cổng độc lập lưới khuyến nghị lắp công tắc chuyển nguồn thủ công."
-      },
-      {
-        q: "Trong hệ nhiều máy thuần độc lập lưới, phía lưới được cấu hình như thế nào?",
-        options: ["Để hở và vỏ inverter phải nối đất tin cậy", "Luôn nối song song vào lưới", "Nối qua CT 100A/50mA", "Bắt buộc nối qua công tơ DTSU666-20"],
-        answer: 0,
-        explain: "Hệ thuần độc lập lưới ghi phía lưới để hở và vỏ inverter phải nối đất tin cậy."
-      },
-      {
-        q: "Trong hệ thuần độc lập lưới, ngưỡng SOC ngắt xả pin nên được cài như thế nào?",
-        options: ["Tương đối cao để tránh xả sâu", "Luôn đặt bằng 0%", "Luôn đặt bằng 100%", "Không cần cài đặt"],
-        answer: 0,
-        explain: "Ghi chú trong hệ thuần độc lập lưới khuyến nghị đặt ngưỡng SOC ngắt xả tương đối cao để tránh xả sâu pin."
-      },
-      {
-        q: "Yêu cầu chung đối với các bộ pin kết nối song song là gì?",
-        options: ["Model của các bộ pin song song phải giống nhau", "Có thể trộn model tùy ý", "Chỉ cần cùng điện áp AC", "Chỉ cần cùng hãng inverter"],
-        answer: 0,
-        explain: "Phần tương thích pin ghi model của các bộ pin kết nối song song phải giống nhau."
-      },
-      {
-        q: "Trong hệ nhiều inverter, pin axit-chì được hỗ trợ như thế nào?",
-        options: ["Không hỗ trợ", "Hỗ trợ cho tất cả model", "Chỉ hỗ trợ MG12RL", "Chỉ hỗ trợ khi có máy phát"],
-        answer: 0,
-        explain: "Bảng hệ nhiều inverter thể hiện pin axit-chì không được hỗ trợ."
-      },
-      {
-        q: "Khi cấu hình pin axit-chì, điện áp pin phải nằm trong dải nào?",
-        options: ["40 V - 60 V", "36 V - 48 V", "48 V - 72 V", "60 V - 90 V"],
-        answer: 0,
-        explain: "Slide pin axit-chì ghi yêu cầu điện áp của cổng pin inverter là 40 V - 60 V."
-      },
-      {
-        q: "Khi cấu hình pin axit-chì, các chuỗi pin mắc song song cần giống nhau ở mức nào?",
-        options: ["Phải giống nhau hoàn toàn", "Chỉ cần cùng chiều dài cáp", "Chỉ cần cùng hãng vỏ", "Không cần giống nhau"],
-        answer: 0,
-        explain: "Tài liệu ghi cấu hình các chuỗi pin mắc song song phải giống nhau hoàn toàn."
-      },
-      {
-        q: "Thông số R0 của cảm biến PT100 được nêu trong tài liệu là bao nhiêu?",
-        options: ["100 Ω tại 0°C", "120 Ω tại 0°C", "100 Ω tại 25°C", "3850 Ω tại 0°C"],
-        answer: 0,
-        explain: "Slide lead-acid ghi PT100 reference resistance at 0°C, R0 = 100 Ω."
-      },
-      {
-        q: "TCR của cảm biến PT100 được nêu trong tài liệu là bao nhiêu?",
-        options: ["3850 ppm/K", "3500 ppm/K", "3950 ppm/K", "3000 ppm/K"],
-        answer: 0,
-        explain: "Tài liệu ghi temperature coefficient of resistance, TCR = 3850 ppm/K."
-      },
-      {
-        q: "Vị trí khuyến nghị đặt cảm biến nhiệt độ cho cụm pin axit-chì là ở đâu?",
-        options: ["Mặt bên của bộ pin nằm ở trung tâm cụm pin", "Trên nắp inverter", "Trên dây AC LƯỚI", "Ở đầu cáp PV+"],
-        answer: 0,
-        explain: "Tài liệu khuyến nghị đặt cảm biến trên mặt bên của bộ pin nằm ở trung tâm cụm pin."
-      },
-      {
-        q: "Với 4*MG5/6RL + MBL160 hoặc pin lithium bên thứ ba, tiết diện cáp A của MG5RL được nêu là bao nhiêu?",
-        options: ["35 mm2", "50 mm2", "70 mm2", "95 mm2"],
-        answer: 0,
-        explain: "Slide 4*MG5/6RL ghi A MG5RL 35 mm2, MG6RL 50 mm2."
-      },
-      {
-        q: "Với 4*MG5/6RL + MBL160 hoặc pin lithium bên thứ ba, tiết diện cáp A của MG6RL được nêu là bao nhiêu?",
-        options: ["50 mm2", "35 mm2", "70 mm2", "95 mm2"],
-        answer: 0,
-        explain: "Slide 4*MG5/6RL ghi A MG5RL 35 mm2, MG6RL 50 mm2."
-      },
-      {
-        q: "Với MG8/10/12RL, khi dòng pin <= 135 A, tiết diện cáp nguồn pin được nêu là bao nhiêu?",
-        options: ["35 mm2 đến 50 mm2", "16 mm2 đến 25 mm2", "70 mm2 đến 95 mm2", "95 mm2 đến 120 mm2"],
-        answer: 0,
-        explain: "Slide 4*MG8/10/12RL ghi khi dòng pin <= 135 A thì dùng 35 mm2 đến 50 mm2."
-      },
-      {
-        q: "Với MG8/10/12RL, khi dòng pin > 135 A, tiết diện cáp nguồn pin được nêu là bao nhiêu?",
-        options: ["70 mm2 đến 95 mm2", "35 mm2 đến 50 mm2", "16 mm2 đến 25 mm2", "50 mm2 đến 70 mm2"],
-        answer: 0,
-        explain: "Slide 4*MG8/10/12RL ghi khi dòng pin > 135 A thì dùng 70 mm2 đến 95 mm2."
-      },
-      {
-        q: "Với pin lithium bên thứ ba trong hệ một inverter, MG5/6RL yêu cầu firmware inverter tối thiểu nào?",
-        options: ["BARITE-H_B001.V001.P06 trở lên", "BARITE-H_B001.V001.P08 trở lên", "BARITE-H_B001.V001.P11 trở lên", "BARITE-H_B001.V001.P001 trở lên"],
-        answer: 0,
-        explain: "Bảng firmware hệ một inverter ghi MG5/6RL với pin lithium bên thứ ba cần inverter P06 trở lên."
-      },
-      {
-        q: "Với pin lithium bên thứ ba trong hệ một inverter, MG8/10RL yêu cầu firmware inverter tối thiểu nào?",
-        options: ["BARITE-H_B001.V001.P08 trở lên", "BARITE-H_B001.V001.P06 trở lên", "BARITE-H_B001.V001.P11 trở lên", "BARITE-H_B001.V001.P001 trở lên"],
-        answer: 0,
-        explain: "Bảng firmware hệ một inverter ghi MG8/10RL với pin lithium bên thứ ba cần inverter P08 trở lên."
-      },
-      {
-        q: "Tính năng cải tạo cổng hòa lưới yêu cầu firmware inverter tối thiểu nào?",
-        options: ["BARITE-H_B001.V001.P11 trở lên", "BARITE-H_B001.V001.P09 trở lên", "BARITE-H_B001.V001.P06 trở lên", "BARITE-H_B001.V001.P08 trở lên"],
-        answer: 0,
-        explain: "Trang tính năng/kịch bản mới ghi cải tạo cổng hòa lưới cần inverter P11 trở lên."
-      },
-      {
-        q: "Khi lắp cố định sản phẩm, hai bên trái và phải cần được khóa bằng gì?",
-        options: ["Hai bộ vít", "Một dây rút nhựa", "Một thanh busbar", "Hai đầu nối MC4"],
-        answer: 0,
-        explain: "Requirements for Product Installation and Fixation ghi use two screw sets to lock both left and right side."
-      },
-      {
-        q: "PV cable được khuyến nghị có tiết diện trong khoảng nào?",
-        options: ["4 mm2 - 6 mm2", "0.5 mm2 - 1.0 mm2", "8 AWG - 6 AWG", "35 mm2 - 95 mm2"],
-        answer: 0,
-        explain: "Electrical Connection Overview ghi PV cable cross-section là 4 mm2 - 6 mm2."
-      },
-      {
-        q: "Cáp truyền thông dạng đôi xoắn chống nhiễu được nêu có tiết diện khoảng nào?",
-        options: ["0.5 mm2 - 1.0 mm2", "4 mm2 - 6 mm2", "35 mm2 - 50 mm2", "70 mm2 - 95 mm2"],
-        answer: 0,
-        explain: "Bảng cable type ghi shielded twisted pair cross-section 0.5 mm2 - 1.0 mm2."
-      },
-      {
-        q: "AC cable cho MG5/6RL được nêu theo chuẩn AWG nào?",
-        options: ["8 AWG", "6 AWG", "10 AWG", "4 AWG"],
-        answer: 0,
-        explain: "Electrical Connection Overview ghi AC cable cho MG5/6RL là 8 AWG."
-      },
-      {
-        q: "AC cable cho MG8/10/12RL được nêu theo chuẩn AWG nào?",
-        options: ["6 AWG", "8 AWG", "10 AWG", "4 AWG"],
-        answer: 0,
-        explain: "Electrical Connection Overview ghi AC cable cho MG8/10/12RL là 6 AWG."
-      },
-      {
-        q: "Additional grounding cable cần có tiết diện như thế nào?",
-        options: ["Bằng với dây PE trong cáp AC", "Nhỏ hơn dây PV một cấp", "Luôn là 0.5 mm2", "Luôn là 95 mm2"],
-        answer: 0,
-        explain: "Bảng Electrical Connection Overview ghi additional grounding cable same as PE wire in AC cable."
-      },
-      {
-        q: "Cổng AC của inverter cần được trang bị loại CB nào?",
-        options: ["CB AC tép loại C", "CB DC loại B", "Chỉ dùng RCD thay cho CB", "Cầu chì PV 20 A"],
-        answer: 0,
-        explain: "Phần đấu nối AC ghi cổng/đầu nối AC phải được trang bị CB AC tép loại C."
-      },
-      {
-        q: "Theo một số quy định về an toàn điện, RCD được lắp với mục đích chính nào?",
-        options: ["Bảo vệ rò điện/chạm đất", "Tăng công suất PV", "Tăng điện áp pin", "Xóa lỗi BMS"],
-        answer: 0,
-        explain: "AC Connection ghi lắp RCDs phù hợp tại vị trí cần thiết để earth leakage protection."
-      },
-      {
-        q: "Khi đấu nối PV, cần xác nhận gì trước khi kết nối để tránh reverse polarity?",
-        options: ["Cực dương và cực âm của cáp PV", "Mật khẩu installer", "Tên Wi-Fi", "Mã quốc gia"],
-        answer: 0,
-        explain: "PV Connection ghi confirm positive and negative polarity of PV cables before connection."
-      },
-      {
-        q: "Giữa pin và inverter cần trang bị thiết bị bảo vệ nào?",
-        options: ["CB DC", "CB AC loại C", "Chỉ dùng RCD 30 mA", "Mô-đun WiNet-S2"],
-        answer: 0,
-        explain: "Phần đấu nối pin ghi cần trang bị CB DC giữa pin và inverter."
-      },
-      {
-        q: "Nếu đấu ngược cực dương/âm của cáp pin thì hậu quả được nêu là gì?",
-        options: ["Inverter sẽ bị hư hỏng", "Công tơ sẽ tự hiệu chỉnh", "LCD sẽ tự reset", "CT sẽ đổi chiều tự động"],
-        answer: 0,
-        explain: "Phần đấu nối pin cảnh báo tránh đấu ngược cáp dương và âm, nếu không inverter sẽ bị hư hỏng."
-      },
-      {
-        q: "Model công tơ được hỗ trợ trong phần đấu nối RS485 của công tơ là model nào?",
-        options: ["DTSU666-20", "DTSD1352", "S100", "WiNet-S2"],
-        answer: 0,
-        explain: "Phần đấu nối RS485 của công tơ ghi model công tơ được hỗ trợ là DTSU666-20."
-      },
-      {
-        q: "DTSU666-20 làm việc với loại CT nào?",
-        options: ["CT ngoài dạng điện áp", "CT dạng dòng điện", "Chỉ cuộn Rogowski", "CT tích hợp trong inverter"],
-        answer: 0,
-        explain: "Phần đấu nối RS485 của công tơ ghi DTSU666-20 làm việc với CT ngoài dạng điện áp."
-      },
-      {
-        q: "Các rating CT external dùng với DTSU666-20 được nêu là gì?",
-        options: ["100A/333mV và 250A/333mV", "100A/50mA và 250A/50mA", "63A/333mV và 100A/50mA", "250A/5A và 100A/5A"],
-        answer: 0,
-        explain: "Tài liệu ghi CT specifications: 100A/333mV and 250A/333mV."
-      },
-      {
-        q: "Công tơ và CT trong giải pháp đấu nối RS485 của công tơ cần được mua từ đâu?",
-        options: ["Sungrow", "Bất kỳ nhà cung cấp nào", "Nhà sản xuất tấm PV", "Nhà sản xuất máy phát"],
-        answer: 0,
-        explain: "Slide đấu nối RS485 của công tơ ghi cả công tơ và CT đều phải được mua từ Sungrow."
-      },
-      {
-        q: "Công suất định mức của máy phát tối thiểu phải như thế nào so với tổng tải?",
-        options: ["Không nhỏ hơn tổng công suất tải", "Nhỏ hơn một nửa tổng tải", "Bằng công suất CT", "Không liên quan đến tải"],
-        answer: 0,
-        explain: "Phần đấu nối DO của máy phát ghi công suất định mức của máy phát không được nhỏ hơn tổng công suất tải."
-      },
-      {
-        q: "Tài liệu khuyến nghị công suất định mức của máy phát nên vượt quá tổng nào?",
-        options: ["Công suất inverter + tổng công suất tải", "Công suất PV + rating CT", "Điện áp pin + điện áp lưới", "Công suất WiNet + công suất công tơ"],
-        answer: 0,
-        explain: "Phần đấu nối DO của máy phát khuyến nghị công suất định mức của máy phát vượt quá tổng công suất inverter và tổng công suất tải."
-      },
-      {
-        q: "Dải tần số đầu ra máy phát ở định mức 50Hz được nêu là bao nhiêu?",
-        options: ["45 Hz - 55 Hz", "55 Hz - 65 Hz", "47 Hz - 53 Hz", "50 Hz - 60 Hz"],
-        answer: 0,
-        explain: "Phần đấu nối DO của máy phát ghi dải tần số đầu ra là 45Hz - 55Hz khi định mức 50Hz."
-      },
-      {
-        q: "Trong quy trình bật nguồn của hệ một máy, bước đầu tiên là gì?",
-        options: ["Bật CB pin", "Bật CB AC nối lưới", "Quan sát đèn LED", "Xoay công tắc DC sang OFF"],
-        answer: 0,
-        explain: "Quy trình bật nguồn hệ một máy ghi bước 1 là bật CB pin."
-      },
-      {
-        q: "Trước khi đóng CB AC giữa inverter và lưới, cần dùng thiết bị gì để kiểm tra điện áp AC?",
-        options: ["Đồng hồ vạn năng ở thang AC", "Kìm dòng ở dây DC", "Máy đo nhiệt PT100", "Mô-đun WiNet-S2"],
-        answer: 0,
-        explain: "Slide quy trình bật nguồn ghi dùng đồng hồ vạn năng ở thang AC để đảm bảo điện áp AC nằm trong dải quy định."
-      },
-      {
-        q: "Trong quy trình bật nguồn của hệ nhiều inverter, cần tránh thao tác nào?",
-        options: ["Không đóng đồng thời tất cả CB giữa inverter và pin", "Không bật từng pin theo thứ tự", "Không thiết lập máy chính-máy phụ", "Không bật công tắc DC"],
-        answer: 0,
-        explain: "Quy trình bật nguồn hệ nhiều inverter ghi không đóng đồng thời tất cả CB giữa inverter và pin."
-      },
-      {
-        q: "Nếu còn CB đang mở trong hệ nhiều inverter, kết nối lưới có thể gây lỗi nào khi tải độc lập lưới nặng?",
-        options: ["Lỗi 113 quá dòng tức thời bypass", "Lỗi 714 truyền thông BMS", "Lỗi 106 cáp nối đất", "Lỗi 038 rơ-le"],
-        answer: 0,
-        explain: "Slide hệ nhiều inverter ghi nếu còn CB đang mở, kết nối lưới có thể kích hoạt lỗi 113 khi tải nặng nối vào cổng độc lập lưới."
-      }
-    ];
+    const state = {
+      active: false,
+      submitting: false,
+      token: "",
+      email: "",
+      deviceId: getDeviceId(),
+      participant: null,
+      questions: [],
+      answers: {},
+      history: [],
+      attemptNumber: 0,
+      maxAttempts: 3,
+      expiresAt: "",
+      startedAt: "",
+      hiddenAt: 0,
+      tabViolations: 0,
+      timerId: null,
+      tabTimerId: null
+    };
 
-    const letters = ["A", "B", "C", "D"];
-    let quizQuestions = [];
-    let selected = new Map();
-    let remaining = DURATION_SECONDS;
-    let timerId = null;
-    let submitted = false;
-
-    const setupEl = document.getElementById("setup");
-    const quizEl = document.getElementById("quiz");
-    const resultEl = document.getElementById("result");
-    const quizbarEl = document.getElementById("quizbar");
-    const actionsEl = document.getElementById("actions");
-    const timerEl = document.getElementById("timer");
-    const answeredEl = document.getElementById("answered");
+    const loginView = document.getElementById("loginView");
+    const examView = document.getElementById("examView");
+    const resultView = document.getElementById("resultView");
+    const loginContent = document.getElementById("loginContent");
+    const loginForm = document.getElementById("loginForm");
+    const emailInput = document.getElementById("emailInput");
+    const loginButton = document.getElementById("loginButton");
+    const registrationToggleButton = document.getElementById("registrationToggleButton");
+    const registrationForm = document.getElementById("registrationForm");
+    const registrationName = document.getElementById("registrationName");
+    const registrationCompany = document.getElementById("registrationCompany");
+    const registrationEmail = document.getElementById("registrationEmail");
+    const registrationBackButton = document.getElementById("registrationBackButton");
+    const registrationSubmitButton = document.getElementById("registrationSubmitButton");
+    const registrationMessage = document.getElementById("registrationMessage");
+    const loginMessage = document.getElementById("loginMessage");
+    const timer = document.getElementById("timer");
+    const timerText = document.getElementById("timerText");
+    const candidateBar = document.getElementById("candidateBar");
+    const quizForm = document.getElementById("quizForm");
+    const submitButton = document.getElementById("submitButton");
+    const answeredCount = document.getElementById("answeredCount");
     const progressFill = document.getElementById("progressFill");
-    const startBtn = document.getElementById("startBtn");
-    const submitBtn = document.getElementById("submitBtn");
-    const restartBtn = document.getElementById("restartBtn");
-    const nameInput = document.getElementById("studentName");
-    const companyInput = document.getElementById("companyName");
-    const contactInput = document.getElementById("contactInfo");
+    const questionNavSummary = document.getElementById("questionNavSummary");
+    const questionNavGrid = document.getElementById("questionNavGrid");
+    const backToTopButton = document.getElementById("backToTopButton");
+    const tabOverlay = document.getElementById("tabOverlay");
+    const tabCountdown = document.getElementById("tabCountdown");
 
-    function shuffle(items) {
-      const arr = items.slice();
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+    function getDeviceId() {
+      const signature = [
+        navigator.userAgent,
+        navigator.platform,
+        navigator.language,
+        Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+        screen.width,
+        screen.height,
+        screen.colorDepth,
+        navigator.hardwareConcurrency || "",
+        navigator.deviceMemory || ""
+      ].join("|");
+      let hash = 2166136261;
+      for (let index = 0; index < signature.length; index += 1) {
+        hash ^= signature.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
       }
-      return arr;
+      return `device-${(hash >>> 0).toString(16).padStart(8, "0")}`;
     }
 
-    function formatTime(total) {
-      const minutes = Math.floor(total / 60).toString().padStart(2, "0");
-      const seconds = (total % 60).toString().padStart(2, "0");
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function formatTime(totalSeconds) {
+      const safe = Math.max(0, Math.floor(totalSeconds));
+      const minutes = Math.floor(safe / 60).toString().padStart(2, "0");
+      const seconds = (safe % 60).toString().padStart(2, "0");
       return `${minutes}:${seconds}`;
     }
 
-    function prepareQuiz() {
-      quizQuestions = shuffle(questionBank).slice(0, QUESTION_COUNT).map((item, index) => {
-        const options = item.options.map((text, optionIndex) => ({
-          text,
-          correct: optionIndex === item.answer
-        }));
-        return {
-          ...item,
-          no: index + 1,
-          shuffledOptions: shuffle(options)
+    function formatDuration(totalSeconds) {
+      const safe = Math.max(0, Math.floor(totalSeconds));
+      const minutes = Math.floor(safe / 60);
+      const seconds = safe % 60;
+      return `${minutes} phút ${seconds} giây`;
+    }
+
+    async function callApi(action, payload = {}) {
+      if (!APPS_SCRIPT_URL) {
+        throw new Error("Hệ thống chưa được cấu hình Google Apps Script.");
+      }
+      return new Promise((resolve, reject) => {
+        const requestId = `mgrl_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+        const iframe = document.createElement("iframe");
+        iframe.hidden = true;
+        iframe.setAttribute("aria-hidden", "true");
+        iframe.tabIndex = -1;
+
+        const timeoutId = window.setTimeout(() => {
+          cleanup();
+          reject(new Error(
+            "Không nhận được phản hồi từ Google Apps Script. Hãy kiểm tra deployment đang chạy đúng phiên bản mới nhất rồi thử lại."
+          ));
+        }, 20000);
+
+        function cleanup() {
+          window.clearTimeout(timeoutId);
+          window.removeEventListener("message", handleMessage);
+          iframe.remove();
+        }
+
+        function isGoogleAppsScriptOrigin(origin) {
+          if (origin === "null") {
+            return true;
+          }
+          try {
+            const host = new URL(origin).hostname.toLowerCase();
+            return host === "script.google.com" ||
+              host === "script.googleusercontent.com" ||
+              host.endsWith(".googleusercontent.com");
+          } catch (error) {
+            return false;
+          }
+        }
+
+        function handleMessage(event) {
+          if (!isGoogleAppsScriptOrigin(event.origin)) return;
+          if (!event.data || event.data.source !== "MGRL_APPS_SCRIPT") return;
+          if (event.data.requestId !== requestId) return;
+
+          const data = event.data.data;
+          cleanup();
+          if (!data || !data.ok) {
+            reject(new Error(data && data.message ? data.message : "Yêu cầu không được xử lý."));
+            return;
+          }
+          resolve(data);
+        }
+
+        window.addEventListener("message", handleMessage);
+
+        const query = new URLSearchParams({
+          action,
+          payload: JSON.stringify(payload),
+          transport: "iframe",
+          requestId,
+          _: Date.now().toString()
+        });
+        iframe.onerror = (event) => {
+          console.error("Không tải được Google Apps Script Web App:", APPS_SCRIPT_URL, event);
+          cleanup();
+          reject(new Error(
+            "Không thể mở kênh kết nối đến Google Apps Script. Hãy kiểm tra lại URL Web App và quyền truy cập “Anyone”."
+          ));
         };
+        iframe.src = `${APPS_SCRIPT_URL}?${query.toString()}`;
+        document.body.appendChild(iframe);
       });
     }
 
-    function renderQuiz() {
-      quizEl.innerHTML = quizQuestions.map((item, index) => {
-        const options = item.shuffledOptions.map((option, optionIndex) => `
-          <label class="option" data-q="${index}" data-option="${optionIndex}">
-            <input type="radio" name="q${index}" value="${optionIndex}">
-            <span class="letter">${letters[optionIndex]}</span>
-            <span class="answer-text">${option.text}</span>
-          </label>
-        `).join("");
-
-        return `
-          <section class="question" data-question="${index}">
-            <div class="qhead">
-              <div class="qno">${index + 1}</div>
-              <div class="qtext">${item.q}</div>
-            </div>
-            <div class="options">${options}</div>
-            <div class="explain">${item.explain}</div>
-          </section>
-        `;
-      }).join("");
+    function setLoginLoading(isLoading) {
+      loginButton.disabled = isLoading;
+      loginButton.textContent = isLoading ? "Đang xác thực..." : "Đăng nhập và bắt đầu";
     }
 
-    function updateProgress() {
-      const count = selected.size;
-      answeredEl.textContent = `${count}/${QUESTION_COUNT} đã chọn`;
-      progressFill.style.width = `${(count / QUESTION_COUNT) * 100}%`;
+    function saveSession() {
+      if (!state.active) return;
+      localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify({
+        token: state.token,
+        email: state.email,
+        deviceId: state.deviceId,
+        participant: state.participant,
+        questions: state.questions,
+        answers: state.answers,
+        history: state.history,
+        attemptNumber: state.attemptNumber,
+        maxAttempts: state.maxAttempts,
+        expiresAt: state.expiresAt,
+        startedAt: state.startedAt,
+        hiddenAt: state.hiddenAt,
+        tabViolations: state.tabViolations
+      }));
     }
 
-    function startTimer() {
-      clearInterval(timerId);
-      remaining = DURATION_SECONDS;
-      timerEl.textContent = formatTime(remaining);
-      timerEl.classList.remove("warning");
-      timerId = setInterval(() => {
-        remaining -= 1;
-        timerEl.textContent = formatTime(Math.max(remaining, 0));
-        if (remaining <= 300) timerEl.classList.add("warning");
-        if (remaining <= 0) submitQuiz(true);
-      }, 1000);
+    function clearSession() {
+      localStorage.removeItem(ACTIVE_SESSION_KEY);
     }
 
-    function startQuiz() {
-      const requiredFields = [nameInput, companyInput, contactInput];
-      const emptyField = requiredFields.find((field) => !field.value.trim());
-      if (emptyField) {
-        emptyField.reportValidity();
-        emptyField.focus();
-        return;
-      }
+    function applyAttempt(data, localAnswers = {}) {
+      state.active = true;
+      state.submitting = false;
+      state.token = data.attemptToken;
+      state.email = data.participant.email;
+      state.participant = data.participant;
+      state.questions = data.questions;
+      state.answers = localAnswers;
+      state.history = data.history || [];
+      state.attemptNumber = data.attemptNumber;
+      state.maxAttempts = data.maxAttempts;
+      state.expiresAt = data.expiresAt;
+      state.startedAt = data.startedAt;
+      state.hiddenAt = 0;
+      state.tabViolations = Number(data.tabViolations || 0);
+      saveSession();
+      renderExam();
+    }
 
-      submitted = false;
-      selected = new Map();
-      resultEl.style.display = "none";
-      resultEl.innerHTML = "";
-      setupEl.style.display = "none";
-      quizbarEl.style.display = "grid";
-      actionsEl.style.display = "flex";
-      quizEl.classList.remove("submitted");
-      prepareQuiz();
-      renderQuiz();
+    function renderCandidate() {
+      const items = [
+        ["Người làm bài", state.participant.name],
+        ["Công ty", state.participant.company],
+        ["Email", state.participant.email],
+        ["Lượt thi", `${state.attemptNumber}/${state.maxAttempts}`]
+      ];
+      candidateBar.innerHTML = items.map(([label, value]) => `
+        <div class="candidate-item">
+          <span class="candidate-label">${escapeHtml(label)}</span>
+          <span class="candidate-value" title="${escapeHtml(value)}">${escapeHtml(value)}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderExam() {
+      loginView.hidden = true;
+      resultView.hidden = true;
+      examView.hidden = false;
+      timer.hidden = false;
+      submitButton.disabled = false;
+      submitButton.textContent = "Nộp bài";
+      renderCandidate();
+      quizForm.innerHTML = state.questions.map((question, questionIndex) => `
+        <section id="question-${questionIndex + 1}" class="panel question-card">
+          <div class="question-head">
+            <div class="question-number">${questionIndex + 1}</div>
+            <div class="question-text">${escapeHtml(question.question)}</div>
+          </div>
+          <div class="options">
+            ${question.options.map((option) => `
+              <label class="option">
+                <input
+                  type="radio"
+                  name="${escapeHtml(question.id)}"
+                  value="${escapeHtml(option.key)}"
+                  ${state.answers[question.id] === option.key ? "checked" : ""}
+                >
+                <span class="option-letter">${escapeHtml(option.key)}</span>
+                <span class="option-text">${escapeHtml(option.text)}</span>
+              </label>
+            `).join("")}
+          </div>
+        </section>
+      `).join("");
       updateProgress();
       startTimer();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function buildSubmission(score, percent, resultStatus, auto) {
-      const answers = quizQuestions.map((item, questionIndex) => {
-        const chosenIndex = selected.get(questionIndex);
-        const chosenOption = Number.isInteger(chosenIndex) ? item.shuffledOptions[chosenIndex] : null;
-        const correctOption = item.shuffledOptions.find((option) => option.correct);
-        return {
-          no: questionIndex + 1,
-          question: item.q,
-          selected: chosenOption ? chosenOption.text : "",
-          correct: correctOption ? correctOption.text : "",
-          isCorrect: Boolean(chosenOption && chosenOption.correct)
-        };
-      });
-
-      return {
-        submittedAt: new Date().toISOString(),
-        name: nameInput.value.trim(),
-        company: companyInput.value.trim(),
-        contact: contactInput.value.trim(),
-        score,
-        total: QUESTION_COUNT,
-        percent,
-        resultStatus,
-        autoSubmitted: auto,
-        durationSeconds: DURATION_SECONDS - Math.max(remaining, 0),
-        answers
-      };
+    function renderQuestionNavigator() {
+      questionNavGrid.innerHTML = state.questions.map((question, questionIndex) => {
+        const answered = Boolean(state.answers[question.id]);
+        return `
+          <button
+            class="question-nav-button${answered ? " answered-question" : ""}"
+            type="button"
+            data-question-number="${questionIndex + 1}"
+            aria-label="Đi đến câu ${questionIndex + 1}${answered ? ", đã chọn đáp án" : ", chưa chọn đáp án"}"
+          >${questionIndex + 1}</button>
+        `;
+      }).join("");
     }
 
-    async function saveSubmission(payload) {
-      if (!APPS_SCRIPT_URL) {
-        return { skipped: true };
+    function updateProgress() {
+      const count = Object.keys(state.answers).length;
+      const total = state.questions.length || 40;
+      answeredCount.textContent = `${count}/${total} đã chọn`;
+      questionNavSummary.textContent = `${count}/${total} câu đã chọn`;
+      progressFill.style.width = `${(count / total) * 100}%`;
+      renderQuestionNavigator();
+    }
+
+    function remainingSeconds() {
+      return Math.ceil((Date.parse(state.expiresAt) - Date.now()) / 1000);
+    }
+
+    function startTimer() {
+      clearInterval(state.timerId);
+      const tick = () => {
+        const remaining = remainingSeconds();
+        timerText.textContent = formatTime(remaining);
+        timer.classList.toggle("warning", remaining <= 300);
+        if (remaining <= 0) {
+          clearInterval(state.timerId);
+          submitExam(true, "TIME_LIMIT");
+        }
+      };
+      tick();
+      state.timerId = setInterval(tick, 1000);
+    }
+
+    async function startAttempt(email) {
+      const data = await callApi("startAttempt", {
+        email,
+        deviceId: state.deviceId,
+        clientTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Ho_Chi_Minh"
+      });
+      applyAttempt(data);
+    }
+
+    function showRegistrationForm() {
+      clearInterval(registrationRedirectTimer);
+      registrationRedirectTimer = null;
+      loginContent.hidden = true;
+      registrationForm.hidden = false;
+      registrationMessage.textContent = "";
+      registrationMessage.classList.remove("success");
+      registrationName.focus();
+    }
+
+    function showLoginForm() {
+      clearInterval(registrationRedirectTimer);
+      registrationRedirectTimer = null;
+      registrationForm.hidden = true;
+      loginContent.hidden = false;
+      loginMessage.textContent = "";
+      emailInput.focus();
+    }
+
+    function setRegistrationLoading(isLoading) {
+      registrationSubmitButton.disabled = isLoading;
+      registrationBackButton.disabled = isLoading;
+      registrationSubmitButton.textContent = isLoading ? "Đang gửi..." : "Gửi đăng ký";
+    }
+
+    async function registerParticipant() {
+      const registeredEmail = registrationEmail.value.trim().toLowerCase();
+      const data = await callApi("registerParticipant", {
+        name: registrationName.value.trim(),
+        company: registrationCompany.value.trim(),
+        email: registeredEmail
+      });
+      registrationMessage.classList.add("success");
+      registrationForm.reset();
+
+      let secondsLeft = 5;
+      const updateRedirectMessage = () => {
+        registrationMessage.textContent =
+          `${data.message} Tự động chuyển về trang đăng nhập sau ${secondsLeft} giây.`;
+      };
+      updateRedirectMessage();
+      clearInterval(registrationRedirectTimer);
+      registrationRedirectTimer = window.setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft <= 0) {
+          clearInterval(registrationRedirectTimer);
+          registrationRedirectTimer = null;
+          setRegistrationLoading(false);
+          emailInput.value = registeredEmail;
+          showLoginForm();
+          return;
+        }
+        updateRedirectMessage();
+      }, 1000);
+    }
+
+    async function submitExam(autoSubmitted, terminationReason) {
+      if (!state.active || state.submitting) return;
+      if (!autoSubmitted && !window.confirm("Bạn xác nhận nộp bài? Sau khi nộp, bạn không thể sửa câu trả lời.")) {
+        return;
       }
 
-      await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
+      state.submitting = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "Đang nộp bài...";
+      clearInterval(state.timerId);
+      clearInterval(state.tabTimerId);
+      tabOverlay.hidden = true;
 
-      return { skipped: false };
+      try {
+        const data = await callApi("submitAttempt", {
+          attemptToken: state.token,
+          email: state.email,
+          deviceId: state.deviceId,
+          answers: state.answers,
+          autoSubmitted: Boolean(autoSubmitted),
+          terminationReason,
+          tabViolations: state.tabViolations
+        });
+        state.active = false;
+        clearSession();
+        renderResult(data);
+      } catch (error) {
+        state.submitting = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "Nộp bài";
+        startTimer();
+        window.alert(error.message);
+      }
     }
 
-    function submitQuiz(auto = false) {
-      if (submitted) return;
-      submitted = true;
-      clearInterval(timerId);
+    function renderResult(data) {
+      examView.hidden = true;
+      timer.hidden = true;
+      resultView.hidden = false;
+      const passed = data.result === "PASS";
+      const history = data.history || [];
+      const historyHtml = history.length
+        ? history.map((item) => `
+            <div class="history-item">
+              <div class="history-score">
+                ${escapeHtml(item.score)}/${escapeHtml(item.total)}
+                <span class="${item.result === "PASS" ? "pass-text" : "failed-text"}">${escapeHtml(item.result)}</span>
+              </div>
+              <div class="history-time">${escapeHtml(item.submittedAt)}</div>
+            </div>
+          `).join("")
+        : '<p class="intro">Chưa có lịch sử.</p>';
+      const wrongQuestions = Array.isArray(data.wrongQuestions) ? data.wrongQuestions : [];
+      const wrongReviewHtml = wrongQuestions.length
+        ? wrongQuestions.map((item) => {
+            const selectedAnswer = item.selectedKey
+              ? `${item.selectedKey}. ${item.selectedText || ""}`
+              : "Chưa trả lời";
+            return `
+              <div class="wrong-review-item">
+                <div class="wrong-review-number">${escapeHtml(item.number)}</div>
+                <div>
+                  <div class="wrong-review-question">${escapeHtml(item.question)}</div>
+                  <div class="wrong-review-answer">Câu trả lời của bạn: ${escapeHtml(selectedAnswer)}</div>
+                </div>
+              </div>
+            `;
+          }).join("")
+        : '<p class="intro">Bạn không có câu trả lời sai.</p>';
 
-      let score = 0;
-      quizQuestions.forEach((item, questionIndex) => {
-        const questionEl = quizEl.querySelector(`[data-question="${questionIndex}"]`);
-        const chosenIndex = selected.get(questionIndex);
-        const optionEls = questionEl.querySelectorAll(".option");
-        let isCorrect = false;
-
-        optionEls.forEach((optionEl, optionIndex) => {
-          const input = optionEl.querySelector("input");
-          input.disabled = true;
-          const option = item.shuffledOptions[optionIndex];
-          if (option.correct) optionEl.classList.add("correct");
-          if (chosenIndex === optionIndex && !option.correct) optionEl.classList.add("incorrect");
-          if (chosenIndex === optionIndex && option.correct) isCorrect = true;
-        });
-
-        if (isCorrect) {
-          score += 1;
-          questionEl.classList.add("correct");
-        } else {
-          questionEl.classList.add("incorrect");
-        }
-      });
-
-      const student = nameInput.value.trim() || "Người làm bài";
-      const percent = Math.round((score / QUESTION_COUNT) * 100);
-      const resultStatus = percent >= 80 ? "PASS" : "FAILED";
-      const resultStatusClass = resultStatus === "PASS" ? "pass" : "failed";
-      const payload = buildSubmission(score, percent, resultStatus, auto);
-      resultEl.innerHTML = `
-      <div class="score">${score}/${QUESTION_COUNT} điểm - ${percent}% <span class="result-status ${resultStatusClass}">${resultStatus}</span></div>
-      <p>${student}${auto ? " đã hết thời gian và bài đã được nộp tự động." : " đã hoàn thành bài kiểm tra."}</p>
-      <p>Các câu đúng/sai và giải thích đang hiển thị bên dưới.</p>
-      <p id="saveStatus">Đang lưu kết quả...</p>
+      resultView.innerHTML = `
+        <div class="result-layout">
+          <aside class="panel history-panel">
+            <h3 class="history-title">Lịch sử thi (${history.length})</h3>
+            <div class="history-list">${historyHtml}</div>
+          </aside>
+          <div class="result-main">
+            <section class="panel result-summary">
+              <div class="result-user">
+                <span>Người làm bài: <strong>${escapeHtml(data.participant.name)}</strong></span>
+                <span>Công ty: <strong>${escapeHtml(data.participant.company)}</strong></span>
+                <span>Email: <strong>${escapeHtml(data.participant.email)}</strong></span>
+              </div>
+              <div class="metrics">
+                <div class="metric">
+                  <div class="metric-label">Kết quả</div>
+                  <div class="metric-value ${passed ? "pass-text" : "failed-text"}">${escapeHtml(data.result)}</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Điểm bài thi</div>
+                  <div class="metric-value">${escapeHtml(data.score)}<small>/${escapeHtml(data.total)}</small></div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Thời gian làm bài</div>
+                  <div class="metric-value">${Math.floor(data.durationSeconds / 60)}<small> phút ${data.durationSeconds % 60} giây</small></div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Lượt thi</div>
+                  <div class="metric-value">${escapeHtml(data.attemptNumber)}<small>/${escapeHtml(data.maxAttempts)}</small></div>
+                </div>
+              </div>
+            </section>
+            <section class="panel analysis-panel">
+              <div class="score-ring" style="--score: ${Math.max(0, Math.min(100, data.percent))}%">
+                <div class="score-ring-copy">Tỷ lệ chính xác<strong>${escapeHtml(data.percent)}%</strong></div>
+              </div>
+              <div class="analysis-copy">
+                <h3>Phân tích kết quả bài thi</h3>
+                <p class="result-callout ${passed ? "pass-text" : "failed-text"}">${passed ? "Bạn đã hoàn thành bài đánh giá." : "Bạn chưa đạt yêu cầu của bài đánh giá."}</p>
+                <p>Ngưỡng đạt là 80%.</p>
+                <p>Thời gian thực hiện: ${escapeHtml(formatDuration(data.durationSeconds))}. Kết quả đã được lưu vào Google Sheet.</p>
+              </div>
+            </section>
+            <section class="panel wrong-review-panel">
+              <h3>Các câu trả lời chưa đúng (${wrongQuestions.length})</h3>
+              <p class="wrong-review-intro">Xem lại nội dung câu hỏi và phương án bạn đã chọn.</p>
+              <div class="wrong-review-list">${wrongReviewHtml}</div>
+            </section>
+            <div class="result-actions">
+              <button class="button" type="button" data-action="restart-exam">Quay về trang đăng nhập</button>
+            </div>
+          </div>
+        </div>
       `;
-      resultEl.style.display = "block";
-      quizEl.classList.add("submitted");
-      submitBtn.disabled = true;
-      timerEl.textContent = auto ? "00:00" : timerEl.textContent;
       window.scrollTo({ top: 0, behavior: "smooth" });
-
-      const saveStatus = document.getElementById("saveStatus");
-      saveSubmission(payload)
-        .then((result) => {
-          saveStatus.textContent = result.skipped
-            ? "Chưa cấu hình Google Sheets, kết quả chỉ hiển thị trên trình duyệt này."
-            : "Đã gửi kết quả về Google Sheets.";
-        })
-        .catch(() => {
-          saveStatus.textContent = "Không gửi được kết quả về Google Sheets. Vui lòng kiểm tra kết nối hoặc Apps Script URL.";
-        });
     }
 
-    quizEl.addEventListener("change", (event) => {
-      if (submitted || event.target.type !== "radio") return;
-      const questionIndex = Number(event.target.name.replace("q", ""));
-      selected.set(questionIndex, Number(event.target.value));
+    function returnToLogin() {
+      const previousEmail = state.email;
+      state.active = false;
+      state.submitting = false;
+      state.token = "";
+      state.questions = [];
+      state.answers = {};
+      state.hiddenAt = 0;
+      submitButton.disabled = false;
+      submitButton.textContent = "Nộp bài";
+      clearInterval(state.timerId);
+      clearInterval(state.tabTimerId);
+      clearSession();
+      resultView.hidden = true;
+      resultView.innerHTML = "";
+      examView.hidden = true;
+      timer.hidden = true;
+      loginView.hidden = false;
+      emailInput.value = previousEmail;
+      showLoginForm();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startTabCountdown() {
+      clearInterval(state.tabTimerId);
+      const update = () => {
+        if (!state.hiddenAt || !state.active) return;
+        const elapsed = Math.floor((Date.now() - state.hiddenAt) / 1000);
+        const left = TAB_GRACE_SECONDS - elapsed;
+        tabCountdown.textContent = Math.max(0, left);
+        if (left <= 0) {
+          clearInterval(state.tabTimerId);
+          submitExam(true, "TAB_TIMEOUT");
+        }
+      };
+      update();
+      state.tabTimerId = setInterval(update, 1000);
+    }
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      loginMessage.textContent = "";
+      if (!emailInput.checkValidity()) {
+        emailInput.reportValidity();
+        return;
+      }
+
+      setLoginLoading(true);
+      try {
+        await startAttempt(emailInput.value.trim().toLowerCase());
+      } catch (error) {
+        loginMessage.textContent = error.message;
+      } finally {
+        setLoginLoading(false);
+      }
+    });
+
+    registrationToggleButton.addEventListener("click", showRegistrationForm);
+    registrationBackButton.addEventListener("click", showLoginForm);
+
+    registrationForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      registrationMessage.textContent = "";
+      registrationMessage.classList.remove("success");
+      const fields = [registrationName, registrationCompany, registrationEmail];
+      const invalidField = fields.find((field) => !field.checkValidity());
+      if (invalidField) {
+        invalidField.reportValidity();
+        invalidField.focus();
+        return;
+      }
+
+      setRegistrationLoading(true);
+      try {
+        await registerParticipant();
+      } catch (error) {
+        registrationMessage.textContent = error.message;
+      } finally {
+        if (!registrationRedirectTimer) {
+          setRegistrationLoading(false);
+        }
+      }
+    });
+
+    quizForm.addEventListener("change", (event) => {
+      if (!state.active || event.target.type !== "radio") return;
+      state.answers[event.target.name] = event.target.value;
+      saveSession();
       updateProgress();
     });
 
-    startBtn.addEventListener("click", startQuiz);
-    submitBtn.addEventListener("click", () => submitQuiz(false));
-    restartBtn.addEventListener("click", () => {
-      clearInterval(timerId);
-      submitBtn.disabled = false;
-      startQuiz();
+    questionNavGrid.addEventListener("click", (event) => {
+      const button = event.target.closest(".question-nav-button");
+      if (!button) return;
+      const questionNumber = Number(button.dataset.questionNumber);
+      const questionCard = document.getElementById(`question-${questionNumber}`);
+      if (questionCard) {
+        questionCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
+
+    resultView.addEventListener("click", (event) => {
+      const button = event.target.closest('[data-action="restart-exam"]');
+      if (button) returnToLogin();
+    });
+
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", () => {
+      backToTopButton.hidden = window.scrollY < 420;
+    }, { passive: true });
+
+    submitButton.addEventListener("click", () => submitExam(false, "MANUAL"));
+
+    function beginAwayCountdown() {
+      if (!state.active || state.submitting) return;
+      if (!state.hiddenAt) {
+        state.hiddenAt = Date.now();
+        state.tabViolations += 1;
+        saveSession();
+      }
+      tabOverlay.hidden = false;
+      startTabCountdown();
+    }
+
+    function returnFromAway() {
+      if (!state.active || state.submitting || document.hidden) return;
+      clearInterval(state.tabTimerId);
+      const elapsed = state.hiddenAt ? Date.now() - state.hiddenAt : 0;
+      if (elapsed >= TAB_GRACE_SECONDS * 1000) {
+        submitExam(true, "TAB_TIMEOUT");
+        return;
+      }
+      state.hiddenAt = 0;
+      saveSession();
+      tabOverlay.hidden = true;
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        beginAwayCountdown();
+        return;
+      }
+      if (document.hasFocus()) {
+        returnFromAway();
+      }
+    });
+
+    window.addEventListener("blur", () => {
+      beginAwayCountdown();
+    });
+
+    window.addEventListener("focus", () => {
+      returnFromAway();
+    });
+
+    window.addEventListener("beforeunload", (event) => {
+      if (!state.active || state.submitting) return;
+      event.preventDefault();
+      event.returnValue = "";
+    });
+
+    (async function initialize() {
+      const raw = localStorage.getItem(ACTIVE_SESSION_KEY);
+      if (!raw) return;
+      let reloadTerminationSucceeded = false;
+      try {
+        const saved = JSON.parse(raw);
+        setLoginLoading(true);
+        loginMessage.textContent = "Đang kết thúc phiên thi trước do trang đã được tải lại...";
+        await callApi("submitAttempt", {
+          attemptToken: saved.token,
+          email: saved.email,
+          deviceId: saved.deviceId || state.deviceId,
+          answers: saved.answers || {},
+          autoSubmitted: true,
+          terminationReason: "PAGE_RELOAD",
+          tabViolations: Number(saved.tabViolations || 0)
+        });
+        clearSession();
+        emailInput.value = saved.email || "";
+        loginMessage.textContent = "Phiên thi trước đã kết thúc do tải lại trang và được tính là một lượt tham gia.";
+        reloadTerminationSucceeded = true;
+      } catch (error) {
+        loginMessage.textContent =
+          `Chưa thể kết thúc phiên thi trước: ${error.message} Vui lòng tải lại trang để thử lại.`;
+      } finally {
+        if (reloadTerminationSucceeded) {
+          setLoginLoading(false);
+        } else {
+          loginButton.disabled = true;
+          loginButton.textContent = "Tải lại trang để thử lại";
+        }
+      }
+    })();
   </script>
 </body>
 </html>
