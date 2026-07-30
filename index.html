@@ -254,6 +254,27 @@
       margin-top: 0;
     }
 
+    .otp-field {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 150px;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .otp-field .button {
+      min-height: 48px;
+      margin-top: 0;
+      padding-inline: 14px;
+      white-space: nowrap;
+    }
+
+    #registrationOtp {
+      letter-spacing: 6px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+    }
+
     .button.secondary-button {
       border: 1px solid #cbd5df;
       background: #fff;
@@ -563,7 +584,7 @@
 
     .metrics {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       margin-top: 22px;
     }
 
@@ -625,6 +646,60 @@
     .analysis-copy h3 { margin: 0 0 10px; font-size: 18px; }
     .analysis-copy p { margin: 6px 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
     .analysis-copy .result-callout { color: var(--ink); font-size: 16px; font-weight: 800; }
+
+    .category-performance {
+      display: grid;
+      gap: 13px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .category-row { min-width: 0; }
+
+    .category-row-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .category-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .category-swatch {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 9px;
+      border-radius: 2px;
+    }
+
+    .category-score {
+      flex: 0 0 auto;
+      color: var(--muted);
+    }
+
+    .category-bar {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #e8edf1;
+    }
+
+    .category-bar-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+    }
 
     .wrong-review-panel { padding: 24px; }
     .wrong-review-panel h3 { margin: 0; font-size: 18px; }
@@ -714,8 +789,11 @@
       .result-layout { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; }
       .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(4) { border-right: 0; }
       .metric:nth-child(3) { padding-left: 0; }
+      .metric:nth-child(5) { padding-left: 0; border-right: 0; }
       .analysis-panel { grid-template-columns: 1fr; text-align: center; }
+      .category-row-head { text-align: left; }
     }
 
     @media (max-width: 620px) {
@@ -751,6 +829,8 @@
       .result-actions .button { width: 100%; }
       .back-to-top { right: 14px; bottom: 14px; }
       .submit-bar .button { width: 100%; }
+      .otp-field { grid-template-columns: 1fr; }
+      .otp-field .button { width: 100%; }
     }
   </style>
 </head>
@@ -790,8 +870,8 @@
 
       <form id="registrationForm" class="registration-form" novalidate hidden>
         <p class="eyebrow">Đăng ký người tham gia</p>
-        <h2>Gửi thông tin đăng ký</h2>
-        <p class="intro">Thông tin sẽ được lưu vào Google Sheet. Quản trị viên sẽ phê duyệt quyền tham gia và số lượt thi.</p>
+        <h2>Xác thực email đăng ký</h2>
+        <p class="intro">Nhập thông tin, nhận mã OTP qua email và xác thực để đăng ký tham gia.</p>
         <div class="registration-grid">
           <div>
             <label for="registrationName">Họ và tên</label>
@@ -805,9 +885,16 @@
             <label for="registrationEmail">Email đăng ký</label>
             <input id="registrationEmail" type="email" autocomplete="email" placeholder="ten@congty.com" required>
           </div>
+          <div class="otp-field">
+            <div>
+              <label for="registrationOtp">Mã OTP</label>
+              <input id="registrationOtp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="000000" required>
+            </div>
+            <button id="registrationOtpButton" class="button secondary-button" type="button">Gửi mã OTP</button>
+          </div>
           <div class="registration-actions">
             <button id="registrationBackButton" class="button secondary-button" type="button">Quay lại</button>
-            <button id="registrationSubmitButton" class="button" type="submit">Gửi đăng ký</button>
+            <button id="registrationSubmitButton" class="button" type="submit" disabled>Đăng ký</button>
           </div>
         </div>
         <p id="registrationMessage" class="login-message registration-message" role="alert"></p>
@@ -859,6 +946,10 @@
     const ACTIVE_SESSION_KEY = "mgrl_active_attempt_v2";
     const TAB_GRACE_SECONDS = 60;
     let registrationRedirectTimer = null;
+    let registrationOtpSent = false;
+    let registrationLoading = false;
+    let otpCooldownTimer = null;
+    let otpCooldownRemaining = 0;
 
     const state = {
       active: false,
@@ -892,6 +983,8 @@
     const registrationName = document.getElementById("registrationName");
     const registrationCompany = document.getElementById("registrationCompany");
     const registrationEmail = document.getElementById("registrationEmail");
+    const registrationOtp = document.getElementById("registrationOtp");
+    const registrationOtpButton = document.getElementById("registrationOtpButton");
     const registrationBackButton = document.getElementById("registrationBackButton");
     const registrationSubmitButton = document.getElementById("registrationSubmitButton");
     const registrationMessage = document.getElementById("registrationMessage");
@@ -1176,6 +1269,7 @@
     function showRegistrationForm() {
       clearInterval(registrationRedirectTimer);
       registrationRedirectTimer = null;
+      resetRegistrationOtp();
       loginContent.hidden = true;
       registrationForm.hidden = false;
       registrationMessage.textContent = "";
@@ -1186,6 +1280,7 @@
     function showLoginForm() {
       clearInterval(registrationRedirectTimer);
       registrationRedirectTimer = null;
+      resetRegistrationOtp();
       registrationForm.hidden = true;
       loginContent.hidden = false;
       loginMessage.textContent = "";
@@ -1193,20 +1288,103 @@
     }
 
     function setRegistrationLoading(isLoading) {
-      registrationSubmitButton.disabled = isLoading;
+      registrationLoading = isLoading;
+      registrationSubmitButton.disabled = isLoading || !registrationOtpSent;
       registrationBackButton.disabled = isLoading;
-      registrationSubmitButton.textContent = isLoading ? "Đang gửi..." : "Gửi đăng ký";
+      registrationOtpButton.disabled = isLoading || otpCooldownRemaining > 0;
+      registrationSubmitButton.textContent = isLoading ? "Đang xác thực..." : "Đăng ký";
+      if (isLoading) {
+        registrationOtpButton.textContent = "Đang xử lý...";
+      } else {
+        updateOtpButton();
+      }
+    }
+
+    function updateOtpButton() {
+      if (otpCooldownRemaining > 0) {
+        registrationOtpButton.textContent = `Gửi lại sau ${otpCooldownRemaining}s`;
+        registrationOtpButton.disabled = true;
+      } else {
+        registrationOtpButton.textContent = registrationOtpSent ? "Gửi lại OTP" : "Gửi mã OTP";
+        registrationOtpButton.disabled = registrationLoading;
+      }
+    }
+
+    function resetRegistrationOtp() {
+      window.clearInterval(otpCooldownTimer);
+      otpCooldownTimer = null;
+      otpCooldownRemaining = 0;
+      registrationOtpSent = false;
+      registrationOtp.value = "";
+      setRegistrationLoading(false);
+    }
+
+    function startOtpCooldown(seconds) {
+      window.clearInterval(otpCooldownTimer);
+      otpCooldownRemaining = Math.max(0, Number(seconds) || 60);
+      updateOtpButton();
+      otpCooldownTimer = window.setInterval(() => {
+        otpCooldownRemaining -= 1;
+        if (otpCooldownRemaining <= 0) {
+          window.clearInterval(otpCooldownTimer);
+          otpCooldownTimer = null;
+          otpCooldownRemaining = 0;
+        }
+        updateOtpButton();
+      }, 1000);
+    }
+
+    async function sendRegistrationOtp() {
+      const fields = [registrationName, registrationCompany, registrationEmail];
+      const invalidField = fields.find((field) => !field.checkValidity());
+      if (invalidField) {
+        invalidField.reportValidity();
+        invalidField.focus();
+        return;
+      }
+
+      registrationMessage.textContent = "";
+      registrationMessage.classList.remove("success");
+      setRegistrationLoading(true);
+      try {
+        const data = await callApi("sendRegistrationOtp", {
+          name: registrationName.value.trim(),
+          company: registrationCompany.value.trim(),
+          email: registrationEmail.value.trim()
+        });
+        if (data.alreadyRegistered) {
+          const registeredEmail = registrationEmail.value.trim();
+          registrationMessage.textContent = data.message;
+          registrationMessage.classList.add("success");
+          emailInput.value = registeredEmail;
+          window.setTimeout(() => {
+            showLoginForm();
+          }, 2500);
+          return;
+        }
+        registrationOtpSent = true;
+        registrationMessage.textContent = data.message;
+        registrationMessage.classList.add("success");
+        startOtpCooldown(data.resendAfterSeconds || 60);
+        registrationOtp.focus();
+      } catch (error) {
+        registrationMessage.textContent = error.message;
+      } finally {
+        setRegistrationLoading(false);
+      }
     }
 
     async function registerParticipant() {
-      const registeredEmail = registrationEmail.value.trim().toLowerCase();
+      const registeredEmail = registrationEmail.value.trim();
       const data = await callApi("registerParticipant", {
         name: registrationName.value.trim(),
         company: registrationCompany.value.trim(),
-        email: registeredEmail
+        email: registeredEmail,
+        otp: registrationOtp.value.trim()
       });
       registrationMessage.classList.add("success");
       registrationForm.reset();
+      resetRegistrationOtp();
 
       let secondsLeft = 5;
       const updateRedirectMessage = () => {
@@ -1264,12 +1442,93 @@
       }
     }
 
+    const CATEGORY_COLORS = [
+      "#f56b1f",
+      "#16865a",
+      "#2878b5",
+      "#d14343",
+      "#7a5aa6",
+      "#d39b16",
+      "#4b8792",
+      "#b55b78"
+    ];
+
+    function normalizeCategoryStats(data) {
+      const source = Array.isArray(data.categoryStats) && data.categoryStats.length
+        ? data.categoryStats
+        : [{
+            category: "Tổng quan",
+            correct: Number(data.score || 0),
+            total: Number(data.total || 0),
+            percent: Number(data.percent || 0)
+          }];
+
+      return source.map((item, index) => {
+        const total = Math.max(0, Number(item.total || 0));
+        const correct = Math.max(0, Math.min(total, Number(item.correct || 0)));
+        const category = String(item.category || "").trim();
+        return {
+          category: category || `Phần ${index + 1}`,
+          label: category ? `Phần ${index + 1}: ${category}` : `Phần ${index + 1}`,
+          correct,
+          total,
+          percent: total ? Math.round((correct / total) * 100) : 0,
+          color: CATEGORY_COLORS[index % CATEGORY_COLORS.length]
+        };
+      });
+    }
+
+    function buildCategoryRing(stats) {
+      const totalQuestions = stats.reduce((sum, item) => sum + item.total, 0);
+      if (!totalQuestions) return "conic-gradient(#e8edf1 0deg 360deg)";
+
+      const stops = [];
+      let cursor = 0;
+      stats.forEach((item) => {
+        const span = (item.total / totalQuestions) * 360;
+        const end = cursor + span;
+        const separator = Math.min(1.2, span * 0.08);
+        const contentEnd = Math.max(cursor, end - separator);
+        const correctEnd = cursor + ((contentEnd - cursor) * item.percent / 100);
+
+        if (correctEnd > cursor) {
+          stops.push(`${item.color} ${cursor.toFixed(2)}deg ${correctEnd.toFixed(2)}deg`);
+        }
+        if (contentEnd > correctEnd) {
+          stops.push(`#e8edf1 ${correctEnd.toFixed(2)}deg ${contentEnd.toFixed(2)}deg`);
+        }
+        if (end > contentEnd) {
+          stops.push(`#ffffff ${contentEnd.toFixed(2)}deg ${end.toFixed(2)}deg`);
+        }
+        cursor = end;
+      });
+      return `conic-gradient(${stops.join(", ")})`;
+    }
+
     function renderResult(data) {
       examView.hidden = true;
       timer.hidden = true;
       resultView.hidden = false;
       const passed = data.result === "PASS";
       const history = data.history || [];
+      const categoryStats = normalizeCategoryStats(data);
+      const categoryRing = buildCategoryRing(categoryStats);
+      const categoryPerformanceHtml = categoryStats.map((item) => `
+        <div class="category-row">
+          <div class="category-row-head">
+            <span class="category-name">
+              <span class="category-swatch" style="background:${item.color}"></span>
+              ${escapeHtml(item.label)}
+            </span>
+            <span class="category-score">${escapeHtml(item.correct)}/${escapeHtml(item.total)} (${escapeHtml(item.percent)}%)</span>
+          </div>
+          <div class="category-bar" role="img" aria-label="${escapeHtml(item.category)}: đúng ${escapeHtml(item.correct)} trên ${escapeHtml(item.total)} câu">
+            <span class="category-bar-fill" style="width:${item.percent}%;background:${item.color}"></span>
+          </div>
+        </div>
+      `).join("");
+      const ranking = data.ranking || {};
+      const rankingAvailable = Number(ranking.rank) > 0 && Number(ranking.totalParticipants) > 0;
       const historyHtml = history.length
         ? history.map((item) => `
             <div class="history-item">
@@ -1329,10 +1588,17 @@
                   <div class="metric-label">Lượt thi</div>
                   <div class="metric-value">${escapeHtml(data.attemptNumber)}<small>/${escapeHtml(data.maxAttempts)}</small></div>
                 </div>
+                <div class="metric">
+                  <div class="metric-label">Xếp hạng theo email</div>
+                  <div class="metric-value">${rankingAvailable
+                    ? `${escapeHtml(ranking.rank)}<small>/${escapeHtml(ranking.totalParticipants)}</small>`
+                    : '<small>Chưa có dữ liệu</small>'
+                  }</div>
+                </div>
               </div>
             </section>
             <section class="panel analysis-panel">
-              <div class="score-ring" style="--score: ${Math.max(0, Math.min(100, data.percent))}%">
+              <div class="score-ring" style="background:${categoryRing}">
                 <div class="score-ring-copy">Tỷ lệ chính xác<strong>${escapeHtml(data.percent)}%</strong></div>
               </div>
               <div class="analysis-copy">
@@ -1340,6 +1606,7 @@
                 <p class="result-callout ${passed ? "pass-text" : "failed-text"}">${passed ? "Bạn đã hoàn thành bài đánh giá." : "Bạn chưa đạt yêu cầu của bài đánh giá."}</p>
                 <p>Ngưỡng đạt là 80%.</p>
                 <p>Thời gian thực hiện: ${escapeHtml(formatDuration(data.durationSeconds))}. Kết quả đã được lưu vào Google Sheet.</p>
+                <div class="category-performance">${categoryPerformanceHtml}</div>
               </div>
             </section>
             <section class="panel wrong-review-panel">
@@ -1415,16 +1682,38 @@
 
     registrationToggleButton.addEventListener("click", showRegistrationForm);
     registrationBackButton.addEventListener("click", showLoginForm);
+    registrationOtpButton.addEventListener("click", sendRegistrationOtp);
+
+    registrationEmail.addEventListener("input", () => {
+      if (!registrationOtpSent) return;
+      resetRegistrationOtp();
+      registrationMessage.classList.remove("success");
+      registrationMessage.textContent = "Email đã thay đổi. Vui lòng gửi lại mã OTP.";
+    });
+
+    registrationOtp.addEventListener("input", () => {
+      registrationOtp.value = registrationOtp.value.replace(/\D/g, "").slice(0, 6);
+    });
 
     registrationForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       registrationMessage.textContent = "";
       registrationMessage.classList.remove("success");
-      const fields = [registrationName, registrationCompany, registrationEmail];
+      const fields = [
+        registrationName,
+        registrationCompany,
+        registrationEmail,
+        registrationOtp
+      ];
       const invalidField = fields.find((field) => !field.checkValidity());
       if (invalidField) {
         invalidField.reportValidity();
         invalidField.focus();
+        return;
+      }
+      if (!registrationOtpSent) {
+        registrationMessage.textContent = "Vui lòng gửi và nhập mã OTP trước khi đăng ký.";
+        registrationOtpButton.focus();
         return;
       }
 
