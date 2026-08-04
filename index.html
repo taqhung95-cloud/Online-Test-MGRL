@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f06f22">
-  <title>BÀI ĐÁNH GIÁ KIẾN THỨC SẢN PHẨM HYBRID INVERTER MGRL 2026</title>
+  <title>CỔNG ĐÁNH GIÁ KIẾN THỨC SẢN PHẨM SUNGROW</title>
   <meta name="author" content="Sungrow Product Training">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -298,9 +298,141 @@
       line-height: 1.55;
     }
 
+    .course-view {
+      display: grid;
+      gap: 22px;
+    }
+
+    .course-view[hidden] { display: none; }
+
+    .course-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 24px;
+    }
+
+    .course-user {
+      min-width: 0;
+    }
+
+    .course-user-name {
+      margin: 0;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .course-user-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .course-header .button {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 8px 15px;
+    }
+
+    .course-heading {
+      margin-top: 4px;
+    }
+
+    .course-heading .intro {
+      max-width: 720px;
+      margin-bottom: 0;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .course-card {
+      display: flex;
+      min-width: 0;
+      min-height: 260px;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--orange);
+      border-radius: 8px;
+      background: #fff;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .course-code {
+      color: var(--orange-dark);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .course-card h3 {
+      margin: 9px 0 0;
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .course-description {
+      margin: 10px 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .course-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .course-fact span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .course-fact strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .course-card .button {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .course-card.unavailable {
+      border-top-color: #9aa8b5;
+    }
+
+    .course-card.unavailable .course-code {
+      color: var(--muted);
+    }
+
+    .course-empty {
+      grid-column: 1 / -1;
+      padding: 28px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     .candidate-bar {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1px;
       margin-bottom: 18px;
       overflow: hidden;
@@ -782,6 +914,7 @@
       .brand-logo { width: 122px; }
       h1 { font-size: 15px; }
       .candidate-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .exam-layout { grid-template-columns: 1fr; }
       .question-nav-panel { position: static; }
       .question-nav-grid { grid-template-columns: repeat(auto-fit, minmax(34px, 1fr)); }
@@ -809,6 +942,9 @@
       .timer { width: 100%; }
       main { width: min(100% - 24px, 1180px); padding-top: 18px; }
       .login-panel { margin-top: 20px; padding: 24px 18px; }
+      .course-header { align-items: stretch; flex-direction: column; padding: 20px 18px; }
+      .course-header .button { width: 100%; }
+      .course-grid { grid-template-columns: 1fr; }
       h2 { font-size: 21px; }
       .candidate-bar { grid-template-columns: 1fr; }
       .quiz-toolbar { grid-template-columns: 1fr; }
@@ -844,7 +980,7 @@
           alt="Sungrow"
         >
         <div class="brand-copy">
-          <h1>BÀI ĐÁNH GIÁ KIẾN THỨC SẢN PHẨM HYBRID INVERTER MGRL 2026</h1>
+          <h1>CỔNG ĐÁNH GIÁ KIẾN THỨC SẢN PHẨM SUNGROW</h1>
         </div>
       </div>
       <div id="timer" class="timer" hidden>
@@ -862,7 +998,7 @@
         <form id="loginForm" novalidate>
           <label for="emailInput">Email</label>
           <input id="emailInput" type="email" autocomplete="email" placeholder="ten@congty.com" required>
-          <button id="loginButton" class="button" type="submit">Đăng nhập và bắt đầu</button>
+          <button id="loginButton" class="button" type="submit">Đăng nhập</button>
           <button id="registrationToggleButton" class="registration-link" type="button">Chưa đăng ký? Đăng ký tham gia</button>
           <p id="loginMessage" class="login-message" role="alert"></p>
         </form>
@@ -899,7 +1035,21 @@
         </div>
         <p id="registrationMessage" class="login-message registration-message" role="alert"></p>
       </form>
-      <div class="security-note">Mỗi email và mỗi thiết bị được tham gia tối đa 3 lần. Khi rời tab, chuyển sang ứng dụng khác quá 60 giây hoặc tải lại trang, bài thi sẽ tự động kết thúc.</div>
+      <div class="security-note">Mỗi email và mỗi thiết bị được tham gia tối đa 3 lần cho từng bài kiểm tra. Khi rời tab, chuyển sang ứng dụng khác quá 60 giây hoặc tải lại trang, bài thi sẽ tự động kết thúc. Sau 5 phút không thao tác, hệ thống sẽ cảnh báo và đếm ngược 60 giây.</div>
+    </section>
+
+    <section id="courseView" class="course-view" hidden>
+      <div class="panel course-header">
+        <div id="courseUser" class="course-user"></div>
+        <button id="logoutButton" class="button secondary-button" type="button">Đăng xuất</button>
+      </div>
+      <div class="course-heading">
+        <p class="eyebrow">Chương trình đào tạo</p>
+        <h2>Chọn nội dung kiểm tra</h2>
+        <p class="intro">Mỗi bài kiểm tra sử dụng ngân hàng câu hỏi và lịch sử kết quả riêng.</p>
+      </div>
+      <div id="courseGrid" class="course-grid" aria-live="polite"></div>
+      <p id="courseMessage" class="login-message" role="alert"></p>
     </section>
 
     <section id="examView" hidden>
@@ -930,11 +1080,11 @@
     <section id="resultView" hidden aria-live="polite"></section>
   </main>
 
-  <div id="tabOverlay" class="tab-overlay" hidden>
+  <div id="tabOverlay" class="tab-overlay" role="alertdialog" aria-modal="true" aria-labelledby="attentionTitle" aria-describedby="attentionMessage" hidden>
     <div class="tab-dialog">
-      <p class="eyebrow">Cảnh báo rời bài thi</p>
-      <h2>Vui lòng quay lại bài kiểm tra</h2>
-      <p class="intro">Bài sẽ tự động kết thúc nếu bạn rời tab hoặc chuyển sang ứng dụng khác quá 60 giây.</p>
+      <p id="attentionEyebrow" class="eyebrow">Cảnh báo rời bài thi</p>
+      <h2 id="attentionTitle">Vui lòng quay lại bài kiểm tra</h2>
+      <p id="attentionMessage" class="intro">Bài sẽ tự động kết thúc nếu bạn rời tab hoặc chuyển sang ứng dụng khác quá 60 giây.</p>
       <div id="tabCountdown" class="tab-countdown">60</div>
     </div>
   </div>
@@ -945,6 +1095,8 @@
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzh0vDk-fN86u1_g3wm7ti7MpDTQWIGZjqx-XqVLfuRvR_piNAQ1waysZtEW8_AMWyWNQ/exec";
     const ACTIVE_SESSION_KEY = "mgrl_active_attempt_v2";
     const TAB_GRACE_SECONDS = 60;
+    const INACTIVITY_TRIGGER_SECONDS = 5 * 60;
+    const INACTIVITY_GRACE_SECONDS = 60;
     let registrationRedirectTimer = null;
     let registrationOtpSent = false;
     let registrationLoading = false;
@@ -958,6 +1110,8 @@
       email: "",
       deviceId: getDeviceId(),
       participant: null,
+      courses: [],
+      course: null,
       questions: [],
       answers: {},
       history: [],
@@ -966,18 +1120,26 @@
       expiresAt: "",
       startedAt: "",
       hiddenAt: 0,
+      attentionReason: "",
+      lastInteractionAt: 0,
       tabViolations: 0,
       timerId: null,
-      tabTimerId: null
+      tabTimerId: null,
+      inactivityTimerId: null
     };
 
     const loginView = document.getElementById("loginView");
+    const courseView = document.getElementById("courseView");
     const examView = document.getElementById("examView");
     const resultView = document.getElementById("resultView");
     const loginContent = document.getElementById("loginContent");
     const loginForm = document.getElementById("loginForm");
     const emailInput = document.getElementById("emailInput");
     const loginButton = document.getElementById("loginButton");
+    const courseUser = document.getElementById("courseUser");
+    const courseGrid = document.getElementById("courseGrid");
+    const courseMessage = document.getElementById("courseMessage");
+    const logoutButton = document.getElementById("logoutButton");
     const registrationToggleButton = document.getElementById("registrationToggleButton");
     const registrationForm = document.getElementById("registrationForm");
     const registrationName = document.getElementById("registrationName");
@@ -1001,6 +1163,9 @@
     const backToTopButton = document.getElementById("backToTopButton");
     const tabOverlay = document.getElementById("tabOverlay");
     const tabCountdown = document.getElementById("tabCountdown");
+    const attentionEyebrow = document.getElementById("attentionEyebrow");
+    const attentionTitle = document.getElementById("attentionTitle");
+    const attentionMessage = document.getElementById("attentionMessage");
 
     function getDeviceId() {
       const signature = [
@@ -1120,7 +1285,7 @@
 
     function setLoginLoading(isLoading) {
       loginButton.disabled = isLoading;
-      loginButton.textContent = isLoading ? "Đang xác thực..." : "Đăng nhập và bắt đầu";
+      loginButton.textContent = isLoading ? "Đang xác thực..." : "Đăng nhập";
     }
 
     function saveSession() {
@@ -1130,6 +1295,7 @@
         email: state.email,
         deviceId: state.deviceId,
         participant: state.participant,
+        course: state.course,
         questions: state.questions,
         answers: state.answers,
         history: state.history,
@@ -1152,6 +1318,7 @@
       state.token = data.attemptToken;
       state.email = data.participant.email;
       state.participant = data.participant;
+      state.course = data.course;
       state.questions = data.questions;
       state.answers = localAnswers;
       state.history = data.history || [];
@@ -1160,9 +1327,67 @@
       state.expiresAt = data.expiresAt;
       state.startedAt = data.startedAt;
       state.hiddenAt = 0;
+      state.attentionReason = "";
+      state.lastInteractionAt = Date.now();
       state.tabViolations = Number(data.tabViolations || 0);
       saveSession();
       renderExam();
+    }
+
+    async function authenticateParticipant(email) {
+      const data = await callApi("loginParticipant", {
+        email,
+        deviceId: state.deviceId
+      });
+      state.email = data.participant.email;
+      state.participant = data.participant;
+      state.courses = Array.isArray(data.courses) ? data.courses : [];
+      renderCourseSelection();
+    }
+
+    function renderCourseSelection() {
+      loginView.hidden = true;
+      examView.hidden = true;
+      resultView.hidden = true;
+      resultView.innerHTML = "";
+      courseView.hidden = false;
+      timer.hidden = true;
+      courseMessage.textContent = "";
+
+      courseUser.innerHTML = `
+        <p class="course-user-name">${escapeHtml(state.participant.name)}</p>
+        <div class="course-user-meta">
+          <span>${escapeHtml(state.participant.company)}</span>
+          <span>${escapeHtml(state.participant.email)}</span>
+        </div>
+      `;
+
+      courseGrid.innerHTML = state.courses.length
+        ? state.courses.map((course) => {
+            const remaining = Math.max(0, Number(course.remainingAttempts || 0));
+            const canStart = Boolean(course.canStart);
+            return `
+              <article class="course-card${canStart ? "" : " unavailable"}">
+                <div class="course-code">${escapeHtml(course.id)}</div>
+                <h3>${escapeHtml(course.title)}</h3>
+                <p class="course-description">${escapeHtml(course.description || "Bài đánh giá kiến thức sản phẩm.")}</p>
+                <div class="course-facts">
+                  <div class="course-fact"><span>Số câu</span><strong>${escapeHtml(course.questionCount)}</strong></div>
+                  <div class="course-fact"><span>Thời gian</span><strong>${escapeHtml(course.durationMinutes)} phút</strong></div>
+                  <div class="course-fact"><span>Ngưỡng đạt</span><strong>${escapeHtml(course.passPercent)}%</strong></div>
+                  <div class="course-fact"><span>Lượt còn lại</span><strong>${escapeHtml(remaining)}/${escapeHtml(course.maxAttempts)}</strong></div>
+                </div>
+                <button
+                  class="button"
+                  type="button"
+                  data-course-id="${escapeHtml(course.id)}"
+                  ${canStart ? "" : "disabled"}
+                >${canStart ? "Bắt đầu kiểm tra" : "Đã hết lượt"}</button>
+              </article>
+            `;
+          }).join("")
+        : '<div class="panel course-empty">Hiện chưa có bài kiểm tra nào được mở.</div>';
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function renderCandidate() {
@@ -1170,6 +1395,7 @@
         ["Người làm bài", state.participant.name],
         ["Công ty", state.participant.company],
         ["Email", state.participant.email],
+        ["Bài kiểm tra", state.course ? state.course.title : ""],
         ["Lượt thi", `${state.attemptNumber}/${state.maxAttempts}`]
       ];
       candidateBar.innerHTML = items.map(([label, value]) => `
@@ -1182,6 +1408,7 @@
 
     function renderExam() {
       loginView.hidden = true;
+      courseView.hidden = true;
       resultView.hidden = true;
       examView.hidden = false;
       timer.hidden = false;
@@ -1212,6 +1439,7 @@
       `).join("");
       updateProgress();
       startTimer();
+      startInactivityWatcher();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -1257,9 +1485,10 @@
       state.timerId = setInterval(tick, 1000);
     }
 
-    async function startAttempt(email) {
+    async function startAttempt(email, courseId) {
       const data = await callApi("startAttempt", {
         email,
+        courseId,
         deviceId: state.deviceId,
         clientTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Ho_Chi_Minh"
       });
@@ -1281,6 +1510,8 @@
       clearInterval(registrationRedirectTimer);
       registrationRedirectTimer = null;
       resetRegistrationOtp();
+      courseView.hidden = true;
+      loginView.hidden = false;
       registrationForm.hidden = true;
       loginContent.hidden = false;
       loginMessage.textContent = "";
@@ -1418,6 +1649,7 @@
       submitButton.textContent = "Đang nộp bài...";
       clearInterval(state.timerId);
       clearInterval(state.tabTimerId);
+      clearInterval(state.inactivityTimerId);
       tabOverlay.hidden = true;
 
       try {
@@ -1435,9 +1667,13 @@
         renderResult(data);
       } catch (error) {
         state.submitting = false;
+        state.hiddenAt = 0;
+        state.attentionReason = "";
+        state.lastInteractionAt = Date.now();
         submitButton.disabled = false;
         submitButton.textContent = "Nộp bài";
         startTimer();
+        startInactivityWatcher();
         window.alert(error.message);
       }
     }
@@ -1570,6 +1806,7 @@
                 <span>Người làm bài: <strong>${escapeHtml(data.participant.name)}</strong></span>
                 <span>Công ty: <strong>${escapeHtml(data.participant.company)}</strong></span>
                 <span>Email: <strong>${escapeHtml(data.participant.email)}</strong></span>
+                <span>Bài kiểm tra: <strong>${escapeHtml(data.course ? data.course.title : "")}</strong></span>
               </div>
               <div class="metrics">
                 <div class="metric">
@@ -1604,7 +1841,7 @@
               <div class="analysis-copy">
                 <h3>Phân tích kết quả bài thi</h3>
                 <p class="result-callout ${passed ? "pass-text" : "failed-text"}">${passed ? "Bạn đã hoàn thành bài đánh giá." : "Bạn chưa đạt yêu cầu của bài đánh giá."}</p>
-                <p>Ngưỡng đạt là 80%.</p>
+                <p>Ngưỡng đạt là ${escapeHtml(data.course ? data.course.passPercent : 80)}%.</p>
                 <p>Thời gian thực hiện: ${escapeHtml(formatDuration(data.durationSeconds))}. Kết quả đã được lưu vào Google Sheet.</p>
                 <div class="category-performance">${categoryPerformanceHtml}</div>
               </div>
@@ -1615,7 +1852,7 @@
               <div class="wrong-review-list">${wrongReviewHtml}</div>
             </section>
             <div class="result-actions">
-              <button class="button" type="button" data-action="restart-exam">Quay về trang đăng nhập</button>
+              <button class="button" type="button" data-action="restart-exam">Chọn bài kiểm tra khác</button>
             </div>
           </div>
         </div>
@@ -1623,23 +1860,50 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function returnToLogin() {
-      const previousEmail = state.email;
+    function resetExamState() {
       state.active = false;
       state.submitting = false;
       state.token = "";
+      state.course = null;
       state.questions = [];
       state.answers = {};
       state.hiddenAt = 0;
+      state.attentionReason = "";
+      state.lastInteractionAt = 0;
       submitButton.disabled = false;
       submitButton.textContent = "Nộp bài";
       clearInterval(state.timerId);
       clearInterval(state.tabTimerId);
+      clearInterval(state.inactivityTimerId);
+      tabOverlay.hidden = true;
       clearSession();
       resultView.hidden = true;
       resultView.innerHTML = "";
       examView.hidden = true;
       timer.hidden = true;
+    }
+
+    async function returnToCourseSelection() {
+      const previousEmail = state.email;
+      resetExamState();
+      courseMessage.textContent = "";
+      try {
+        await authenticateParticipant(previousEmail);
+      } catch (error) {
+        loginView.hidden = false;
+        emailInput.value = previousEmail;
+        showLoginForm();
+        loginMessage.textContent = error.message;
+      }
+    }
+
+    function logoutParticipant() {
+      const previousEmail = state.email;
+      resetExamState();
+      state.email = "";
+      state.participant = null;
+      state.courses = [];
+      courseView.hidden = true;
       loginView.hidden = false;
       emailInput.value = previousEmail;
       showLoginForm();
@@ -1651,11 +1915,14 @@
       const update = () => {
         if (!state.hiddenAt || !state.active) return;
         const elapsed = Math.floor((Date.now() - state.hiddenAt) / 1000);
-        const left = TAB_GRACE_SECONDS - elapsed;
+        const graceSeconds = state.attentionReason === "INACTIVITY"
+          ? INACTIVITY_GRACE_SECONDS
+          : TAB_GRACE_SECONDS;
+        const left = graceSeconds - elapsed;
         tabCountdown.textContent = Math.max(0, left);
         if (left <= 0) {
           clearInterval(state.tabTimerId);
-          submitExam(true, "TAB_TIMEOUT");
+          submitExam(true, getAttentionTerminationReason());
         }
       };
       update();
@@ -1672,7 +1939,7 @@
 
       setLoginLoading(true);
       try {
-        await startAttempt(emailInput.value.trim().toLowerCase());
+        await authenticateParticipant(emailInput.value.trim());
       } catch (error) {
         loginMessage.textContent = error.message;
       } finally {
@@ -1683,6 +1950,23 @@
     registrationToggleButton.addEventListener("click", showRegistrationForm);
     registrationBackButton.addEventListener("click", showLoginForm);
     registrationOtpButton.addEventListener("click", sendRegistrationOtp);
+    logoutButton.addEventListener("click", logoutParticipant);
+
+    courseGrid.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-course-id]");
+      if (!button || button.disabled) return;
+      courseMessage.textContent = "";
+      button.disabled = true;
+      const previousText = button.textContent;
+      button.textContent = "Đang tạo đề...";
+      try {
+        await startAttempt(state.email, button.dataset.courseId);
+      } catch (error) {
+        courseMessage.textContent = error.message;
+        button.disabled = false;
+        button.textContent = previousText;
+      }
+    });
 
     registrationEmail.addEventListener("input", () => {
       if (!registrationOtpSent) return;
@@ -1748,7 +2032,7 @@
 
     resultView.addEventListener("click", (event) => {
       const button = event.target.closest('[data-action="restart-exam"]');
-      if (button) returnToLogin();
+      if (button) returnToCourseSelection();
     });
 
     backToTopButton.addEventListener("click", () => {
@@ -1761,33 +2045,86 @@
 
     submitButton.addEventListener("click", () => submitExam(false, "MANUAL"));
 
-    function beginAwayCountdown() {
+    function getAttentionTerminationReason() {
+      if (state.attentionReason === "INACTIVITY") return "INACTIVITY_TIMEOUT";
+      if (state.attentionReason === "WINDOW_BLUR") return "APP_TIMEOUT";
+      return "TAB_TIMEOUT";
+    }
+
+    function updateAttentionMessage(reason) {
+      const inactivity = reason === "INACTIVITY";
+      attentionEyebrow.textContent = inactivity ? "Cảnh báo không hoạt động" : "Cảnh báo rời bài thi";
+      attentionTitle.textContent = inactivity ? "Vui lòng tiếp tục làm bài" : "Vui lòng quay lại bài kiểm tra";
+      attentionMessage.textContent = inactivity
+        ? "Không phát hiện thao tác trong 5 phút. Bài sẽ tự động kết thúc nếu bạn không tiếp tục trong 60 giây."
+        : "Bài sẽ tự động kết thúc nếu bạn rời tab hoặc chuyển sang ứng dụng khác quá 60 giây.";
+    }
+
+    function beginAwayCountdown(reason) {
       if (!state.active || state.submitting) return;
+      const previousReason = state.attentionReason;
       if (!state.hiddenAt) {
         state.hiddenAt = Date.now();
+        if (reason !== "INACTIVITY") state.tabViolations += 1;
+      } else if (previousReason === "INACTIVITY" && reason !== "INACTIVITY") {
         state.tabViolations += 1;
-        saveSession();
       }
+      if (!previousReason || reason === "TAB_HIDDEN" || previousReason === "INACTIVITY") {
+        state.attentionReason = reason;
+      }
+      updateAttentionMessage(state.attentionReason);
+      saveSession();
       tabOverlay.hidden = false;
       startTabCountdown();
     }
 
     function returnFromAway() {
       if (!state.active || state.submitting || document.hidden) return;
+      if (state.attentionReason === "INACTIVITY") return;
       clearInterval(state.tabTimerId);
       const elapsed = state.hiddenAt ? Date.now() - state.hiddenAt : 0;
       if (elapsed >= TAB_GRACE_SECONDS * 1000) {
-        submitExam(true, "TAB_TIMEOUT");
+        submitExam(true, getAttentionTerminationReason());
         return;
       }
       state.hiddenAt = 0;
+      state.attentionReason = "";
+      state.lastInteractionAt = Date.now();
       saveSession();
       tabOverlay.hidden = true;
     }
 
+    function markExamActivity() {
+      if (!state.active || state.submitting || document.hidden) return;
+      state.lastInteractionAt = Date.now();
+      if (state.attentionReason !== "INACTIVITY") return;
+      clearInterval(state.tabTimerId);
+      state.hiddenAt = 0;
+      state.attentionReason = "";
+      saveSession();
+      tabOverlay.hidden = true;
+    }
+
+    function startInactivityWatcher() {
+      clearInterval(state.inactivityTimerId);
+      state.lastInteractionAt = Date.now();
+      state.inactivityTimerId = setInterval(() => {
+        if (
+          !state.active ||
+          state.submitting ||
+          state.hiddenAt ||
+          document.hidden ||
+          !document.hasFocus()
+        ) return;
+        if (Date.now() - state.lastInteractionAt >= INACTIVITY_TRIGGER_SECONDS * 1000) {
+          beginAwayCountdown("INACTIVITY");
+        }
+      }, 1000);
+    }
+
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
-        beginAwayCountdown();
+        beginAwayCountdown("TAB_HIDDEN");
         return;
       }
       if (document.hasFocus()) {
@@ -1796,12 +2133,18 @@
     });
 
     window.addEventListener("blur", () => {
-      beginAwayCountdown();
+      beginAwayCountdown(document.hidden ? "TAB_HIDDEN" : "WINDOW_BLUR");
     });
 
     window.addEventListener("focus", () => {
       returnFromAway();
     });
+
+    ["pointerdown", "pointermove", "keydown", "touchstart", "change"].forEach((eventName) => {
+      document.addEventListener(eventName, markExamActivity, { passive: true, capture: true });
+    });
+
+    window.addEventListener("scroll", markExamActivity, { passive: true });
 
     window.addEventListener("beforeunload", (event) => {
       if (!state.active || state.submitting) return;
